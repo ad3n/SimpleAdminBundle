@@ -11,6 +11,8 @@ use Doctrine\Common\Annotations\Reader;
 
 use Ihsan\SimpleCrudBundle\Controller\CrudController;
 use Ihsan\SimpleCrudBundle\Annotation\Crud;
+use Ihsan\SimpleCrudBundle\Annotation\FormClass;
+use Ihsan\SimpleCrudBundle\Annotation\EntityClass;
 
 final class CrudAnnotationListener
 {
@@ -33,7 +35,7 @@ final class CrudAnnotationListener
         $controller = $controller[0];
 
         if (! $controller instanceof CrudController) {
-            
+
             return;
         }
 
@@ -42,6 +44,15 @@ final class CrudAnnotationListener
         foreach ($this->reader->getClassAnnotations($object) as $annotation) {
             if ($annotation instanceof Crud) {
                 $controller->setEntityClass($annotation->entityClass);
+                $controller->setFormClass($annotation->formClass);
+            }
+
+            if ($annotation instanceof EntityClass) {
+                $controller->setEntityClass($annotation->value);
+            }
+
+            if ($annotation instanceof FormClass) {
+                $controller->setFormClass($annotation->value);
             }
         }
     }

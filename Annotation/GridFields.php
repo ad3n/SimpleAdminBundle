@@ -10,17 +10,7 @@ namespace Ihsan\SimpleCrudBundle\Annotation;
  * @Annotation
  * @Target({"CLASS"})
  */
-final class Crud
+class GridFields
 {
-    public $entityClass;
-
-    public $formClass;
-
-    public $gridFields;
-
-    public $showFields;
-
-    public $pageTitle;
-
-    public $pageDescription;
+    public $value;
 }

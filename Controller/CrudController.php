@@ -29,6 +29,10 @@ abstract class CrudController extends Controller
 
     protected $entityClass;
 
+    protected $formClass;
+
+    protected $hasEventListener = false;
+
     /**
      * @Route("/new/")
      * @Method({"POST", "GET"})
@@ -169,12 +173,16 @@ abstract class CrudController extends Controller
                 $prePersistEvent->setEntityMeneger($entityManager);
                 $prePersistEvent->setEntity($entity);
 
-                $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
+                if ($this->hasEventListener) {
+                    $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
+                }
 
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
-                $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
+                if ($this->hasEventListener) {
+                    $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
+                }
 
                 $this->outputParameter['success'] = 'Data berhasil disimpan.';
             }
@@ -228,5 +236,49 @@ abstract class CrudController extends Controller
         return $this;
     }
 
-    protected abstract function getForm($data = null);
+    public function getEntityClass()
+    {
+        return $this->entityClass;
+    }
+
+    public function setFormClass($entityClass)
+    {
+        $this->entityClass = $entityClass;
+
+        return $this;
+    }
+
+    public function getFormClass()
+    {
+        return $this->entityClass;
+    }
+
+    public function hasEventListener($hasEventListener = true)
+    {
+        $this->hasEventListener = $hasEventListener;
+
+        return $this;
+    }
+
+    public function setPageTitle($pageTitle)
+    {
+        $this->pageTitle = $pageTitle;
+
+        return $this;
+    }
+
+    public function setPageDescription($pageDescription)
+    {
+        $this->pageDescription = $pageDescription;
+
+        return $this;
+    }
+
+    protected function getForm($data = null)
+    {
+        $form = new $this->formClass();
+        $form->setData($data);
+
+        return $form;
+    }
 }
