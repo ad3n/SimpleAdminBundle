@@ -23,7 +23,13 @@
                         {% endif %}
                     " class="user-image" alt="User Image"/>
                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                    <span class="hidden-xs">{{ app.user.fullName | upper}}</span>
+                    <span class="hidden-xs">
+                        {% if app.user.fullName is null %}
+                            {{ app.user.username | humanize }}
+                        {% else %}
+                            {{ app.user.fullName }}
+                        {% endif %}
+                    </span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- The user image in the menu -->
