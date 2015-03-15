@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('app');
+        $rootNode = $treeBuilder->root('ihsan_simple_crud');
 
         $rootNode
             ->children()
@@ -28,6 +28,10 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('identifier')
                     ->defaultValue('id')
+                ->end()
+                ->scalarNode('menu')
+                    ->isRequired()
+                    ->cannotBeEmpty()
                 ->end()
                 ->scalarNode('filter')
                     ->defaultValue('name')

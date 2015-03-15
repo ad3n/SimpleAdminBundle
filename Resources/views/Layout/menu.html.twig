@@ -1,20 +1,5 @@
 <aside class="main-sidebar">
     <section class="sidebar">
-      <ul class="sidebar-menu">
-        <li class="treeview">
-            <a href="{{ url('home') }}"><i class="fa fa-dashboard"></i><span>Home</span></a>
-        </li>
-        <li class="treeview">
-            <a href="{{ url('fos_user_profile_show') }}"><i class="fa fa-shopping-cart"></i><span>Penjualan</span></a>
-        </li>
-        <li class="treeview">
-            <a href="#"><i class="fa fa-tags"></i><span>Produk</span> <i class="fa fa-angle-double-left pull-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle"></i><span>Kategori Produk</span></a></li>
-                <li><a href="#"><i class="fa fa-circle"></i><span>Buat Produk</span></a></li>
-                <li><a href="#"><i class="fa fa-circle"></i><span>Daftar Produk</span></a></li>
-            </ul>
-        </li>
-      </ul>
+      {{ menu | raw }}
     </section>
 </aside>

@@ -1,1 +1,5 @@
 {% extends 'IhsanSimpleCrudBundle::layout.html.twig' %}
+
+{% block menu %}
+    {{ knp_menu_render(menu, { currentClass: 'active' }) }}
+{% endblock %}

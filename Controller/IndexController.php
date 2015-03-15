@@ -10,6 +10,7 @@ namespace Ihsan\SimpleCrudBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use AppBundle\Menu\Builder;
 
 class IndexController extends Controller
 {
@@ -19,6 +20,8 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('IhsanSimpleCrudBundle:Index:index.html.twig');
+        return $this->render('IhsanSimpleCrudBundle:Index:index.html.twig', array(
+            'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
+        ));
     }
 }

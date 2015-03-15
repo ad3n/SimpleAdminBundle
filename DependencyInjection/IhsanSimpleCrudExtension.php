@@ -15,13 +15,14 @@ class IhsanSimpleCrudExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('ihsan.simple_crud.per_page', $config['per_page']);
+        $container->setParameter('ihsan.simple_crud.menu', $config['menu']);
         $container->setParameter('ihsan.simple_crud.identifier', $config['identifier']);
         $container->setParameter('ihsan.simple_crud.filter', $config['filter']);
         $container->setParameter('ihsan.simple_crud.view.form', $config['view']['form']);
         $container->setParameter('ihsan.simple_crud.view.form_theme', $config['view']['form_theme']);
         $container->setParameter('ihsan.simple_crud.view.show', $config['view']['show']);
         $container->setParameter('ihsan.simple_crud.view.grid', $config['view']['grid']);
-        $container->setParameter('ihsan.simple_crud.template.pagination', $config['view']['pagination']);//Override KNP Pagination
+        $container->setParameter('ihsan.simple_crud.view.pagination', $config['view']['pagination']);
 
         $action = array();
         if ($config['per_page']['show']) {
@@ -33,6 +34,10 @@ class IhsanSimpleCrudExtension extends Extension
         if ($config['per_page']['delete']) {
             array_push($action, 'delete');
         }
+
         $container->setParameter('ihsan.simple_crud.grid_action', $action);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 }

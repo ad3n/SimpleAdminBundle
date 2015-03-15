@@ -12,6 +12,10 @@
     {{ page_description }}
 {% endblock %}
 
+{% block menu %}
+    {{ knp_menu_render(menu, { currentClass: 'active' }) }}
+{% endblock %}
+
 {% block content %}
     <div class="col-md-12 col-lg-12 col-sm-12">
         <div class="box box-success box-solid">

@@ -14,22 +14,26 @@ class IsDependenciesPassed implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-       if (! $container->hasParameter('knp_paginator.template.pagination')) {
+        if (! $container->hasParameter('knp_paginator.template.pagination')) {
            throw new InvalidDefinitionException('KnpPaginatorBundle is not loaded.');
-       }
+        }
 
-       if (! $container->hasParameter('fkr_css_url_rewrite.css_url_rewrite.rewrite_only_if_file_exists')) {
+        if (! $container->hasParameter('fkr_css_url_rewrite.css_url_rewrite.rewrite_only_if_file_exists')) {
            throw new InvalidDefinitionException('FkrCssURLRewriteBundle is not loaded.');
-       }
+        }
 
-       if (! $container->hasParameter('fos_user.registration.confirmation.from_email')) {
+        if (! $container->hasParameter('fos_user.registration.confirmation.from_email')) {
            throw new InvalidDefinitionException('FOSUserBundle is not loaded.');
-       }
+        }
 
-       if (! interface_exists('Ihsan\CompressorCompressorInterface')) {
+        if (! $container->hasParameter('knp_menu.default_renderer')) {
+           throw new InvalidDefinitionException('KnpMenuBundle is not loaded.');
+        }
+
+        if (! interface_exists('Ihsan\Compressor\CompressorInterface')) {
            throw new InvalidDefinitionException('Ihsan\Compressor is not loaded.');
-       }
+        }
 
-       $container->setParameter('knp_paginator.template.pagination', $container->getParameter('ihsan.simple_crud.template.pagination'));
+        $container->setParameter('knp_paginator.template.pagination', $container->getParameter('ihsan.simple_crud.view.pagination'));
     }
 }

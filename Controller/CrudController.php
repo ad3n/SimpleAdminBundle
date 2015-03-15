@@ -72,6 +72,7 @@ abstract class CrudController extends Controller
 
         return $this->render($this->container->getParameter('ihsan.simple_crud.view.show'), array(
             'data' => $data,
+            'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
             'page_title' => $this->pageTitle.' | Show',
             'page_description' => $this->pageDescription,
             'back' => $request->headers->get('referer'),
@@ -132,6 +133,7 @@ abstract class CrudController extends Controller
             array(
                 'pagination' => $pagination,
                 'start' => ($page - 1) * $this->container->getParameter('ihsan.simple_crud.per_page'),
+                'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
                 'header' => array_merge($this->gridFields(), array('action')),
                 'page_title' => $this->pageTitle.' | List',
                 'page_description' => $this->pageDescription,
@@ -180,6 +182,7 @@ abstract class CrudController extends Controller
 
         $this->outputParameter['form'] = $form->createView();
         $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_crud.view.form_theme');
+        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_crud.menu');
 
         return $this->render($this->container->getParameter('ihsan.simple_crud.view.form'), $this->outputParameter);
     }

@@ -13,7 +13,7 @@
             }
             %}
 
-            {% include 'IhsanSimpleCrudBundle:Layout:menu.html.twig' %}
+            {% include 'IhsanSimpleCrudBundle:Layout:menu.html.twig' with { menu: block('menu') } %}
 
             {% include 'IhsanSimpleCrudBundle:Layout:content.html.twig'
             with {

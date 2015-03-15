@@ -21,20 +21,6 @@
     {{ javascript | raw }}
 {% endif %}
 
-<script type="text/javascript">
-jQuery(document).ready(function(){
-    var fullPath = location.href.split("#")[0];//ignore #
-
-    jQuery(".treeview").each(function() {
-        var me = jQuery(this);
-
-        if (me.find('a').attr('href').split("#")[0] === fullPath) {
-            me.addClass('active');
-        }
-    });
-});
-</script>
-
 <!--[if IE 8]>
 
 <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
