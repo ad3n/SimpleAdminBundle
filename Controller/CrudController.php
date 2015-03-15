@@ -13,6 +13,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Ihsan\SimpleCrudBundle\Event\PostFlushCrudEvent;
+use Ihsan\SimpleCrudBundle\Event\PrePersistCrudEvent;
+use Ihsan\SimpleCrudBundle\IhsanSimpleCrudEvents as Event;
+
 abstract class CrudController extends Controller
 {
     protected $pageTitle = 'IhsanSimpleCrudBundle';
@@ -23,13 +27,15 @@ abstract class CrudController extends Controller
 
     protected $normalizeFilter = false;
 
+    protected $entityClass;
+
     /**
      * @Route("/new/")
      * @Method({"POST", "GET"})
      */
     public function newAction(Request $request)
     {
-        $entity = $this->getEntityClass();
+        $entity = $this->entityClass;
 
         return $this->handle($request, new $entity(), 'add');
     }
@@ -91,7 +97,7 @@ abstract class CrudController extends Controller
     public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository($this->getEntityClass());
+        $repo = $em->getRepository($this->entityClass);
 
         $qb = $repo->createQueryBuilder('o')->select('o')->addOrderBy(sprintf('o.%s', $this->container->getParameter('ihsan.simple_crud.identifier')), 'DESC');
         $filter = $this->normalizeFilter ? strtoupper($request->query->get('filter')) : $request->query->get('filter');
@@ -149,10 +155,24 @@ abstract class CrudController extends Controller
 
                 $this->outputParameter['errors'] = true;
             } else if ($form->isValid()) {
-
+                $entity = $form->getData();
                 $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($form->getData());
+                $dispatcher = $this->container->get('event_dispatcher');
+
+                $postFlushEvent = new PostFlushCrudEvent();
+                $postFlushEvent->setEntityMeneger($entityManager);
+                $postFlushEvent->setEntity($entity);
+
+                $prePersistEvent = new PrePersistCrudEvent();
+                $prePersistEvent->setEntityMeneger($entityManager);
+                $prePersistEvent->setEntity($entity);
+
+                $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
+
+                $entityManager->persist($entity);
                 $entityManager->flush();
+
+                $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
 
                 $this->outputParameter['success'] = 'Data berhasil disimpan.';
             }
@@ -166,7 +186,7 @@ abstract class CrudController extends Controller
 
     protected function findOr404Error($id)
     {
-        $entity = $this->getDoctrine()->getManager()->getRepository($this->getEntityClass())->find($id);
+        $entity = $this->getDoctrine()->getManager()->getRepository($this->entityClass)->find($id);
 
         if (! $entity) {
             throw new NotFoundHttpException(sprintf('Data with id %s not found.', $id));
@@ -178,7 +198,7 @@ abstract class CrudController extends Controller
     protected function entityProperties()
     {
         $fields = array();
-        $reflection = new \ReflectionClass($this->getEntityClass());
+        $reflection = new \ReflectionClass($this->entityClass);
         $reflection->getProperties();
 
         foreach ($reflection->getProperties() as $key => $property) {
@@ -198,7 +218,12 @@ abstract class CrudController extends Controller
         return $this->entityProperties();
     }
 
-    protected abstract function getEntityClass();
+    public function setEntityClass($entityClass)
+    {
+        $this->entityClass = $entityClass;
+
+        return $this;
+    }
 
     protected abstract function getForm($data = null);
 }

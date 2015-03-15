@@ -26,6 +26,10 @@ class IsDependenciesPassed implements CompilerPassInterface
            throw new InvalidDefinitionException('FOSUserBundle is not loaded.');
        }
 
+       if (! interface_exists('Ihsan\CompressorCompressorInterface')) {
+           throw new InvalidDefinitionException('Ihsan\Compressor is not loaded.');
+       }
+
        $container->setParameter('knp_paginator.template.pagination', $container->getParameter('ihsan.simple_crud.template.pagination'));
     }
 }
