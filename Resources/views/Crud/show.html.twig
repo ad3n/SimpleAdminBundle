@@ -1,0 +1,74 @@
+{% extends 'IhsanSimpleCrudBundle::layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li><a href="#" class="active">{{ page_title }}</a></li>
+{% endblock %}
+
+{% block page_title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block page_description %}
+    {{ page_description }}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="box box-success box-solid">
+            <div class="box-header">
+                <h3 class="box-title">{{ page_title }}</h3>
+                <form role="form">
+                    <div class="box-body">
+                        {% for property in data %}
+                            <p>{{ property.name | humanize }}: {{ property.value }}</p>
+                        {% endfor%}
+                        <div>
+                            <a href="{{ back }}" class="btn btn-primary">Back</a>
+                            <a href="#" class="btn btn-danger delete">Delete</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-warning delete-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">INFO</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Anda yakin akan menghapus data ini?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger delete-action pull-left">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('.delete').on('click', function () {
+                jQuery('.delete-modal').modal({
+                    backdrop: 'static'
+                });
+            });
+
+            jQuery('.delete-action').on('click', function () {
+                var url = document.URL.replace('show', 'delete');
+                jQuery.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (response) {
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
