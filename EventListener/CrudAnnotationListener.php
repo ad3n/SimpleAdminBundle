@@ -45,6 +45,8 @@ final class CrudAnnotationListener
             if ($annotation instanceof Crud) {
                 $controller->setEntityClass($annotation->entityClass);
                 $controller->setFormClass($annotation->formClass);
+                $controller->setPageTitle($annotation->pageTitle);
+                $controller->setPageDescription($annotation->pageDescription);
             }
 
             if ($annotation instanceof EntityClass) {
