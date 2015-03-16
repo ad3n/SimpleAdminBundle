@@ -263,12 +263,12 @@ abstract class CrudController extends Controller
     }
 
     /**
-     * @param string $entityClass
+     * @param string $formClass
      * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
      */
-    public function setFormClass($entityClass)
+    public function setFormClass($formClass)
     {
-        $this->entityClass = $entityClass;
+        $this->formClass = $formClass;
 
         return $this;
     }
@@ -341,7 +341,7 @@ abstract class CrudController extends Controller
 
     protected function getForm($data = null)
     {
-        $form = new $this->formClass();
+        $form = $this->createForm(new $this->formClass());
         $form->setData($data);
 
         return $form;

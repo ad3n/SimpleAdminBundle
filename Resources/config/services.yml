@@ -1,6 +1,6 @@
 services:
     ihsan.simple_crud.crud_annotation_reader:
-        class: Ihsan\SimpleCrudBundle\EventListener\CrudAnnotationListener
+        class: Ihsan\SimpleCrudBundle\EventListener\AnnotationListener
         arguments:
             - @annotation_reader
         tags:

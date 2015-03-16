@@ -54,6 +54,14 @@ final class AnnotationListener
                 $controller->setFormClass($annotation->formClass);
                 $controller->setPageTitle($annotation->pageTitle);
                 $controller->setPageDescription($annotation->pageDescription);
+
+                if ('true' === strtolower($annotation->hasEventListener)) {
+                    $controller->hasEventListener();
+                }
+
+                if ('true' === strtolower($annotation->normalizeFilter)) {
+                    $controller->normalizeFilter();
+                }
             }
 
             if ($annotation instanceof EntityClass) {

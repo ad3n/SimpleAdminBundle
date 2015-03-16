@@ -18,6 +18,10 @@ final class Crud
 
     public $gridFields;
 
+    public $normalizeFilter;
+
+    public $hasEventListener;
+
     public $showFields;
 
     public $pageTitle;
