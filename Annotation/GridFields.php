@@ -13,4 +13,13 @@ namespace Ihsan\SimpleCrudBundle\Annotation;
 class GridFields
 {
     public $value;
+
+    public function isValid()
+    {
+        if (! is_array($this->value)) {
+            return false;
+        }
+
+        return true;
+    }
 }

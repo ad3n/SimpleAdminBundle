@@ -10,11 +10,18 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Doctrine\Common\Annotations\Reader;
 
 use Ihsan\SimpleCrudBundle\Controller\CrudController;
+
 use Ihsan\SimpleCrudBundle\Annotation\Crud;
 use Ihsan\SimpleCrudBundle\Annotation\FormClass;
 use Ihsan\SimpleCrudBundle\Annotation\EntityClass;
+use Ihsan\SimpleCrudBundle\Annotation\HasEventListener;
+use Ihsan\SimpleCrudBundle\Annotation\NormalizeFilter;
+use Ihsan\SimpleCrudBundle\Annotation\PageDescription;
+use Ihsan\SimpleCrudBundle\Annotation\PageTitle;
+use Ihsan\SimpleCrudBundle\Annotation\GridFields;
+use Ihsan\SimpleCrudBundle\Annotation\ShowFields;
 
-final class CrudAnnotationListener
+final class AnnotationListener
 {
     private $reader;
 
@@ -55,6 +62,34 @@ final class CrudAnnotationListener
 
             if ($annotation instanceof FormClass) {
                 $controller->setFormClass($annotation->value);
+            }
+
+            if ($annotation instanceof PageTitle) {
+                $controller->setPageTitle($annotation->value);
+            }
+
+            if ($annotation instanceof PageDescription) {
+                $controller->setPageDescription($annotation->value);
+            }
+
+            if ($annotation instanceof ShowFields) {
+                if ($annotation->isValid()) {//silent is gold
+                    $controller->setShowFields($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof GridFields) {
+                if ($annotation->isValid()) {//silent is gold
+                    $controller->setGridFields($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof HasEventListener) {
+                $controller->hasEventListener();
+            }
+
+            if ($annotation instanceof NormalizeFilter) {
+                $controller->normalizeFilter();
             }
         }
     }

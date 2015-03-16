@@ -27,11 +27,15 @@ abstract class CrudController extends Controller
 
     protected $normalizeFilter = false;
 
+    protected $hasEventListener = false;
+
     protected $entityClass;
 
     protected $formClass;
 
-    protected $hasEventListener = false;
+    protected $showFields = array();
+
+    protected $gridFields = array();
 
     /**
      * @Route("/new/")
@@ -221,14 +225,28 @@ abstract class CrudController extends Controller
 
     protected function showFields()
     {
+        if (! empty($this->showFields)) {
+
+            return $this->showFields;
+        }
+
         return $this->entityProperties();
     }
 
     protected function gridFields()
     {
+        if (! empty($this->gridFields)) {
+
+            return $this->gridFields;
+        }
+
         return $this->entityProperties();
     }
 
+    /**
+     * @param string $entityClass
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
     public function setEntityClass($entityClass)
     {
         $this->entityClass = $entityClass;
@@ -236,11 +254,18 @@ abstract class CrudController extends Controller
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getEntityClass()
     {
         return $this->entityClass;
     }
 
+    /**
+     * @param string $entityClass
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
     public function setFormClass($entityClass)
     {
         $this->entityClass = $entityClass;
@@ -248,11 +273,10 @@ abstract class CrudController extends Controller
         return $this;
     }
 
-    public function getFormClass()
-    {
-        return $this->entityClass;
-    }
-
+    /**
+     * @param boolean $hasEventListener
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
     public function hasEventListener($hasEventListener = true)
     {
         $this->hasEventListener = $hasEventListener;
@@ -260,6 +284,21 @@ abstract class CrudController extends Controller
         return $this;
     }
 
+    /**
+     * @param boolean $normalizeFilter
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function normalizeFilter($normalizeFilter = true)
+    {
+        $this->normalizeFilter = $normalizeFilter;
+
+        return $this;
+    }
+
+    /**
+     * @param string $pageTitle
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
     public function setPageTitle($pageTitle)
     {
         $this->pageTitle = $pageTitle;
@@ -267,9 +306,35 @@ abstract class CrudController extends Controller
         return $this;
     }
 
+    /**
+     * @param string $pageDescription
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
     public function setPageDescription($pageDescription)
     {
         $this->pageDescription = $pageDescription;
+
+        return $this;
+    }
+
+    /**
+     * @param array $fields
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setShowFields(array $fields)
+    {
+        $this->showFields = $fields;
+
+        return $this;
+    }
+
+    /**
+     * @param array $fields
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setGridFields(array $fields)
+    {
+        $this->gridFields = $fields;
 
         return $this;
     }
