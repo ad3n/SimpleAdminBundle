@@ -6,7 +6,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle Navigation</span>
+            <span class="sr-only">Navigation</span>
         </a>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
@@ -49,10 +49,10 @@
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="pull-left">
-                            <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">Profil</a>
+                            <a href="{{ url('fos_user_profile_show') }}" class="btn btn-default btn-flat">{{ 'link.profile' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
                         </div>
                         <div class="pull-right">
-                            <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat">Keluar</a>
+                            <a href="{{ url('fos_user_security_logout') }}" class="btn btn-default btn-flat">{{ 'link.logout' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
                         </div>
                     </li>
                 </ul>

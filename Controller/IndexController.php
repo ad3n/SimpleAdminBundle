@@ -20,7 +20,7 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('IhsanSimpleCrudBundle:Index:index.html.twig', array(
+        return $this->render($this->container->getParameter('ihsan.simple_crud.view.dashboard'), array(
             'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
         ));
     }

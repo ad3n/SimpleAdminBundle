@@ -27,8 +27,8 @@
                             <p>{{ property.name | humanize }}: {{ property.value }}</p>
                         {% endfor%}
                         <div>
-                            <a href="{{ back }}" class="btn btn-primary">Back</a>
-                            <a href="#" class="btn btn-danger delete">Delete</a>
+                            <a href="{{ back }}" class="btn btn-primary">{{ 'action.back' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
+                            <a href="#" class="btn btn-danger delete">{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
                         </div>
                     </div>
                 </form>
@@ -41,14 +41,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">INFO</h4>
+                    <h4 class="modal-title">{{ 'message.info' | trans({}, 'IhsanSimpleCrudBundle') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>Anda yakin akan menghapus data ini?</h4>
+                    <h4>{{ 'message.confirmation' | trans({}, 'IhsanSimpleCrudBundle') }}</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger delete-action pull-left">Delete</button>
+                    <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">{{ 'action.close' | trans({}, 'IhsanSimpleCrudBundle') }}</button>
+                    <button type="button" class="btn btn-danger delete-action pull-left">{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}</button>
                 </div>
             </div>
         </div>

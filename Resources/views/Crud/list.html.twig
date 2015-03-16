@@ -22,7 +22,7 @@
             <div class="box-header">
                 <form role="form">
                     <div class="input-group">
-                        <input type="text" name="filter" class="form-control" placeholder="Search">
+                        <input type="text" name="filter" class="form-control" placeholder="{{ 'action.search' | trans({}, 'IhsanSimpleCrudBundle') }}">
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -45,13 +45,13 @@
                             {% endfor %}
                             <td width="23%">
                                 <button class="btn btn-labeled btn-success">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-share"></i></span>Show
+                                    <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleCrudBundle') }}
                                 </button>
                                 <button class="btn btn-labeled btn-warning">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-pencil"></i></span>Edit
+                                    <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleCrudBundle') }}
                                 </button>
                                 <button class="delete btn btn-labeled btn-danger">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-trash"></i></span>Delete
+                                    <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}
                                 </button>
                             </td>
                         </tr>
@@ -59,7 +59,7 @@
                 </table>
                 <div class="padding-top-7">
                     <div class="pull-left">
-                        <a href = "#" class="btn btn-primary add-new">Add New</a>
+                        <a href = "#" class="btn btn-primary add-new">{{ 'action.add' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
                     </div>
                     <div class="pull-right">
                         {{ knp_pagination_render(pagination) }}

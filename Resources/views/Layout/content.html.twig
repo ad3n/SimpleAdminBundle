@@ -11,7 +11,7 @@
             </small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{ url('home') }}"><i class="fa fa-dashboard"></i> {{ 'link.home' | trans({}, 'IhsanSimpleCrudBundle') }}</a></li>
             {% if breadcrumb is not empty %}
                 {{ breadcrumb | raw }}
             {% endif %}

@@ -18,6 +18,7 @@ class IhsanSimpleCrudExtension extends Extension
         $container->setParameter('ihsan.simple_crud.menu', $config['menu']);
         $container->setParameter('ihsan.simple_crud.identifier', $config['identifier']);
         $container->setParameter('ihsan.simple_crud.filter', $config['filter']);
+        $container->setParameter('ihsan.simple_crud.view.dashboard', $config['view']['dashboard']);
         $container->setParameter('ihsan.simple_crud.view.form', $config['view']['form']);
         $container->setParameter('ihsan.simple_crud.view.form_theme', $config['view']['form_theme']);
         $container->setParameter('ihsan.simple_crud.view.show', $config['view']['show']);
