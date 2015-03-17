@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleCrudBundle\Event\PostFlushCrudEvent;
 use Ihsan\SimpleCrudBundle\Event\PrePersistCrudEvent;
@@ -97,10 +98,12 @@ abstract class CrudController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($entity);
         $entityManager->flush();
+
+        return new JsonResponse(array('status' => true));
     }
 
     /**
-     * @Route("/list/", name="product_category_list")
+     * @Route("/list/")
      * @Method({"GET"})
      */
     public function listAction(Request $request)
@@ -122,9 +125,11 @@ abstract class CrudController extends Controller
         $pagination = $paginator->paginate($qb, $page, $this->container->getParameter('ihsan.simple_crud.per_page'));
 
         $data = array();
+        $identifier = array();
 
         foreach ($pagination as $key => $record) {
             $temp = array();
+            $identifier[$key] = $record->getId();
 
             foreach ($this->gridFields() as $k => $property) {
                 $method = 'get'.ucfirst($property);
@@ -145,6 +150,7 @@ abstract class CrudController extends Controller
                 'header' => array_merge($this->gridFields(), array('action')),
                 'page_title' => $this->pageTitle.' | List',
                 'page_description' => $this->pageDescription,
+                'identifier' => $identifier,
                 'record' => $data,
                 'filter' => $filter,
             )

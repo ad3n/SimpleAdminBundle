@@ -7,4 +7,5 @@ namespace Ihsan\SimpleCrudBundle\Entity;
  */
 interface EntityInterface
 {
+    public function getId();
 }

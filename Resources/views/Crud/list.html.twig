@@ -22,7 +22,7 @@
             <div class="box-header">
                 <form role="form">
                     <div class="input-group">
-                        <input type="text" name="filter" class="form-control" placeholder="{{ 'action.search' | trans({}, 'IhsanSimpleCrudBundle') }}">
+                        <input type="text" name="filter" class="form-control" placeholder="{{ 'message.search' | trans({}, 'IhsanSimpleCrudBundle') }}">
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -43,16 +43,18 @@
                             {% for i, v in value %}
                                 <td>{{ v }}</td>
                             {% endfor %}
-                            <td width="23%">
-                                <button class="btn btn-labeled btn-success">
-                                    <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleCrudBundle') }}
-                                </button>
-                                <button class="btn btn-labeled btn-warning">
-                                    <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleCrudBundle') }}
-                                </button>
-                                <button class="delete btn btn-labeled btn-danger">
-                                    <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}
-                                </button>
+                            <td width="22%">
+                                <div class="btn-group" role="group">
+                                    <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-success show">
+                                        <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                    </button>
+                                    <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-warning edit">
+                                        <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                    </button>
+                                    <button data-record="{{ identifier[key] }}" class="delete btn btn-labeled btn-danger delete">
+                                        <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}
@@ -75,6 +77,24 @@
         jQuery(document).ready(function () {
             jQuery('.add-new').on('click', function () {
                 var url = document.URL.replace('list', 'new');
+                window.location = url;
+            });
+
+            jQuery('.show').on('click', function () {
+                var url = document.URL.replace('list', jQuery(this).data('record') + '/show');
+
+                window.location = url;
+            });
+
+            jQuery('.edit').on('click', function () {
+                var url = document.URL.replace('list', jQuery(this).data('record') + '/edit');
+
+                window.location = url;
+            });
+
+            jQuery('.delete').on('click', function () {
+                var url = document.URL.replace('list', jQuery(this).data('record') + '/show?delete');
+
                 window.location = url;
             });
         });

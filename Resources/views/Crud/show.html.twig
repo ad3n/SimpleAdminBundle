@@ -44,7 +44,7 @@
                     <h4 class="modal-title">{{ 'message.info' | trans({}, 'IhsanSimpleCrudBundle') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>{{ 'message.confirmation' | trans({}, 'IhsanSimpleCrudBundle') }}</h4>
+                    <h4>{{ 'message.delete_confirmation' | trans({}, 'IhsanSimpleCrudBundle') }}</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">{{ 'action.close' | trans({}, 'IhsanSimpleCrudBundle') }}</button>
@@ -58,6 +58,14 @@
 {% block javascript %}
     <script type="text/javascript">
         jQuery(document).ready(function () {
+            var url = document.URL.slice(document.URL.indexOf('?'));
+
+            if ('delete' === url.substr(1, 6)) {
+                setTimeout(function() {
+                    jQuery('.delete').trigger('click');
+                }, 10);
+            }
+
             jQuery('.delete').on('click', function () {
                 jQuery('.delete-modal').modal({
                     backdrop: 'static'
@@ -70,6 +78,16 @@
                     url: url,
                     type: 'DELETE',
                     success: function (response) {
+                        if (true === response.status) {
+                            var url = document.URL.split('/');
+
+                            url.pop();
+                            url.pop();
+                            url.pop();
+                            url.push('list');
+
+                            window.location = url.join('/');
+                        }
                     }
                 });
             });

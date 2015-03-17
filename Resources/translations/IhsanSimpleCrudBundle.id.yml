@@ -1,1 +1,25 @@
 "Bad credentials.": "Username dan Password tidak sesuai"
+message:
+    error: "Terjadi kesalahan, silahkan perbaiki dan kemudian kirimkan kembali."
+    search: "Masukkan kata kunci"
+    info: "Pesan Informasi"
+    login_title: "Halaman Login"
+    username: "Masukkan username"
+    password: "Masukkan password"
+    remember_me: "Ingat saya selalu"
+    delete_confirmation: "Apakah Anda yakin akan menghapus data ini?"
+
+action:
+    login: "Masuk"
+    back: "Kembali ke halaman sebelumnya"
+    back_to_list: "Kembali ke halaman list"
+    close: "Tutup"
+    add: "Tambah baru"
+    show: "Detail"
+    edit: "Edit"
+    delete: "Hapus"
+
+link:
+    home: "Dashboard"
+    logout: "Logout"
+    profile: "Profil"
