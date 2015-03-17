@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleCrudBundle\Tests\Controller;
+namespace Ihsan\SimpleAdminBundle\Tests\Controller;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>

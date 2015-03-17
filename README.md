@@ -1,4 +1,4 @@
-#IhsanSimpleCrudBundle#
+#IhsanSimpleAdminBundle#
 
 ###Provide Simplicity CRUD for your Symfony Application###
 

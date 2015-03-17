@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleCrudBundle\Controller;
+namespace Ihsan\SimpleAdminBundle\Controller;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -14,15 +14,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Ihsan\SimpleCrudBundle\Event\PostFlushCrudEvent;
-use Ihsan\SimpleCrudBundle\Event\PrePersistCrudEvent;
-use Ihsan\SimpleCrudBundle\IhsanSimpleCrudEvents as Event;
+use Ihsan\SimpleAdminBundle\Event\PostFlushCrudEvent;
+use Ihsan\SimpleAdminBundle\Event\PrePersistCrudEvent;
+use Ihsan\SimpleAdminBundle\IhsanSimpleCrudEvents as Event;
 
 abstract class CrudController extends Controller
 {
-    protected $pageTitle = 'IhsanSimpleCrudBundle';
+    protected $pageTitle = 'IhsanSimpleAdminBundle';
 
-    protected $pageDescription = 'Provide DRY CRUD for your Symfony Application';
+    protected $pageDescription = 'Provide Admin Generator with KISS Principle';
 
     protected $outputParameter = array();
 
@@ -38,13 +38,13 @@ abstract class CrudController extends Controller
 
     protected $gridFields = array();
 
-    protected $newActionTemplate = 'IhsanSimpleCrudBundle:Crud:new.html.twig';
+    protected $newActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
-    protected $editActionTemplate = 'IhsanSimpleCrudBundle:Crud:new.html.twig';
+    protected $editActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
-    protected $showActionTemplate = 'IhsanSimpleCrudBundle:Crud:show.html.twig';
+    protected $showActionTemplate = 'IhsanSimpleAdminBundle:Crud:show.html.twig';
 
-    protected $listActionTemplate = 'IhsanSimpleCrudBundle:Crud:list.html.twig';
+    protected $listActionTemplate = 'IhsanSimpleAdminBundle:Crud:list.html.twig';
 
     /**
      * @Route("/new/")
@@ -259,7 +259,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $entityClass
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setEntityClass($entityClass)
     {
@@ -278,7 +278,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $formClass
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setFormClass($formClass)
     {
@@ -289,7 +289,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param boolean $hasEventListener
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function hasEventListener($hasEventListener = true)
     {
@@ -300,7 +300,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param boolean $normalizeFilter
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function normalizeFilter($normalizeFilter = true)
     {
@@ -311,7 +311,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $pageTitle
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setPageTitle($pageTitle)
     {
@@ -322,7 +322,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $pageDescription
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setPageDescription($pageDescription)
     {
@@ -333,7 +333,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param array $fields
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setShowFields(array $fields)
     {
@@ -344,7 +344,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param array $fields
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setGridFields(array $fields)
     {
@@ -363,7 +363,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $template
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setNewActionTemplate($template)
     {
@@ -374,7 +374,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $template
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setEditActionTemplate($template)
     {
@@ -385,7 +385,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $template
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setShowActioinTemplate($template)
     {
@@ -396,7 +396,7 @@ abstract class CrudController extends Controller
 
     /**
      * @param string $template
-     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
     public function setListActionTemplate($template)
     {

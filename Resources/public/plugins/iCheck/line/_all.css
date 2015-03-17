@@ -26,7 +26,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line.hover,
@@ -67,7 +67,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line .icheck_line-icon,
     .iradio_line .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -100,7 +100,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-red.hover,
@@ -141,7 +141,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-red .icheck_line-icon,
     .iradio_line-red .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -174,7 +174,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-green.hover,
@@ -215,7 +215,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-green .icheck_line-icon,
     .iradio_line-green .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -248,7 +248,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-blue.hover,
@@ -289,7 +289,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-blue .icheck_line-icon,
     .iradio_line-blue .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -322,7 +322,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-aero.hover,
@@ -363,7 +363,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-aero .icheck_line-icon,
     .iradio_line-aero .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -396,7 +396,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-grey.hover,
@@ -437,7 +437,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-grey .icheck_line-icon,
     .iradio_line-grey .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -470,7 +470,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-orange.hover,
@@ -511,7 +511,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-orange .icheck_line-icon,
     .iradio_line-orange .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -544,7 +544,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-yellow.hover,
@@ -585,7 +585,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-yellow .icheck_line-icon,
     .iradio_line-yellow .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -618,7 +618,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-pink.hover,
@@ -659,7 +659,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-pink .icheck_line-icon,
     .iradio_line-pink .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }
@@ -692,7 +692,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(line.png) no-repeat;
+        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-purple.hover,
@@ -733,7 +733,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-purple .icheck_line-icon,
     .iradio_line-purple .icheck_line-icon {
-        background-image: url(line@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }

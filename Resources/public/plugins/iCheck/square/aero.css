@@ -9,7 +9,7 @@
     padding: 0;
     width: 22px;
     height: 22px;
-    background: url(aero.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/square/aero.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -55,7 +55,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_square-aero,
     .iradio_square-aero {
-        background-image: url(aero@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/square/aero@2x.png);
         -webkit-background-size: 240px 24px;
         background-size: 240px 24px;
     }

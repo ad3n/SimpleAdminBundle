@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleCrudBundle\EventListener;
+namespace Ihsan\SimpleAdminBundle\EventListener;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -9,21 +9,21 @@ namespace Ihsan\SimpleCrudBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Doctrine\Common\Annotations\Reader;
 
-use Ihsan\SimpleCrudBundle\Controller\CrudController;
+use Ihsan\SimpleAdminBundle\Controller\CrudController;
 
-use Ihsan\SimpleCrudBundle\Annotation\Crud;
-use Ihsan\SimpleCrudBundle\Annotation\FormClass;
-use Ihsan\SimpleCrudBundle\Annotation\EntityClass;
-use Ihsan\SimpleCrudBundle\Annotation\HasEventListener;
-use Ihsan\SimpleCrudBundle\Annotation\NormalizeFilter;
-use Ihsan\SimpleCrudBundle\Annotation\PageDescription;
-use Ihsan\SimpleCrudBundle\Annotation\PageTitle;
-use Ihsan\SimpleCrudBundle\Annotation\GridFields;
-use Ihsan\SimpleCrudBundle\Annotation\ShowFields;
-use Ihsan\SimpleCrudBundle\Annotation\NewActionTemplate;
-use Ihsan\SimpleCrudBundle\Annotation\EditActionTemplate;
-use Ihsan\SimpleCrudBundle\Annotation\ShowActionTemplate;
-use Ihsan\SimpleCrudBundle\Annotation\ListActionTemplate;
+use Ihsan\SimpleAdminBundle\Annotation\Crud;
+use Ihsan\SimpleAdminBundle\Annotation\FormClass;
+use Ihsan\SimpleAdminBundle\Annotation\EntityClass;
+use Ihsan\SimpleAdminBundle\Annotation\HasEventListener;
+use Ihsan\SimpleAdminBundle\Annotation\NormalizeFilter;
+use Ihsan\SimpleAdminBundle\Annotation\PageDescription;
+use Ihsan\SimpleAdminBundle\Annotation\PageTitle;
+use Ihsan\SimpleAdminBundle\Annotation\GridFields;
+use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
+use Ihsan\SimpleAdminBundle\Annotation\NewActionTemplate;
+use Ihsan\SimpleAdminBundle\Annotation\EditActionTemplate;
+use Ihsan\SimpleAdminBundle\Annotation\ShowActionTemplate;
+use Ihsan\SimpleAdminBundle\Annotation\ListActionTemplate;
 
 final class AnnotationListener
 {

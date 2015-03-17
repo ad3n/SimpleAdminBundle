@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-        {% include 'IhsanSimpleCrudBundle:Layout:header.html.twig' with { page_title: block('page_title'), css: block('css') } %}
+        {% include 'IhsanSimpleAdminBundle:Layout:header.html.twig' with { page_title: block('page_title'), css: block('css') } %}
     </head>
     <body class="skin-green">
         <div class="wrapper">
-            {% include 'IhsanSimpleCrudBundle:Layout:body_header.html.twig'
+            {% include 'IhsanSimpleAdminBundle:Layout:body_header.html.twig'
             with {
                 logo: block('logo'),
                 widget: block('widget'),
@@ -13,9 +13,9 @@
             }
             %}
 
-            {% include 'IhsanSimpleCrudBundle:Layout:menu.html.twig' with { menu: block('menu') } %}
+            {% include 'IhsanSimpleAdminBundle:Layout:menu.html.twig' with { menu: block('menu') } %}
 
-            {% include 'IhsanSimpleCrudBundle:Layout:content.html.twig'
+            {% include 'IhsanSimpleAdminBundle:Layout:content.html.twig'
             with {
                 breadcrumb: block('breadcrumb'),
                 content: block('content'),
@@ -24,7 +24,7 @@
             }
             %}
 
-            {% include 'IhsanSimpleCrudBundle:Layout:footer.html.twig'
+            {% include 'IhsanSimpleAdminBundle:Layout:footer.html.twig'
             with {
                 javascript: block('javascript')
             }

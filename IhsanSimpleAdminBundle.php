@@ -1,12 +1,12 @@
 <?php
 
-namespace Ihsan\SimpleCrudBundle;
+namespace Ihsan\SimpleAdminBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Ihsan\SimpleCrudBundle\DependencyInjection\Compiler\IsDependenciesPassed;
+use Ihsan\SimpleAdminBundle\DependencyInjection\Compiler\IsDependenciesPassed;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class IhsanSimpleCrudBundle extends Bundle
+class IhsanSimpleAdminBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {

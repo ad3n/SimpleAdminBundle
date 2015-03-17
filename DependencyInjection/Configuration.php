@@ -1,6 +1,6 @@
 <?php
 
-namespace Ihsan\SimpleCrudBundle\DependencyInjection;
+namespace Ihsan\SimpleAdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ihsan_simple_crud');
+        $rootNode = $treeBuilder->root('ihsan_simple_admin');
 
         $rootNode
             ->children()
@@ -47,13 +47,13 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('dashboard')
-                            ->defaultValue('IhsanSimpleCrudBundle:Index:index.html.twig')
+                            ->defaultValue('IhsanSimpleAdminBundle:Index:index.html.twig')
                         ->end()
                         ->scalarNode('form_theme')
-                            ->defaultValue('IhsanSimpleCrudBundle:Form:fields.html.twig')
+                            ->defaultValue('IhsanSimpleAdminBundle:Form:fields.html.twig')
                         ->end()
                         ->scalarNode('pagination')
-                            ->defaultValue('IhsanSimpleCrudBundle:Layout:pagination.html.twig')
+                            ->defaultValue('IhsanSimpleAdminBundle:Layout:pagination.html.twig')
                         ->end()
                     ->end()
                 ->end()

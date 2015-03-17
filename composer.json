@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ihsan\\SimpleCrudBundle\\": ""
+            "Ihsan\\SimpleAdminBundle\\": ""
         }
     },
     "extra": {

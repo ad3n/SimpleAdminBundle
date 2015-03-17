@@ -1,4 +1,4 @@
-{% extends 'IhsanSimpleCrudBundle::layout.html.twig' %}
+{% extends 'IhsanSimpleAdminBundle::layout.html.twig' %}
 
 {% block breadcrumb %}
     <li><a href="#" class="active">{{ page_title }}</a></li>
@@ -22,7 +22,7 @@
             <div class="box-header">
                 <form role="form">
                     <div class="input-group">
-                        <input type="text" name="filter" class="form-control" placeholder="{{ 'message.search' | trans({}, 'IhsanSimpleCrudBundle') }}">
+                        <input type="text" name="filter" class="form-control" placeholder="{{ 'message.search' | trans({}, 'IhsanSimpleAdminBundle') }}">
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -46,13 +46,13 @@
                             <td width="22%">
                                 <div class="btn-group" role="group">
                                     <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-success show">
-                                        <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                        <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleAdminBundle') }}
                                     </button>
                                     <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-warning edit">
-                                        <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                        <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleAdminBundle') }}
                                     </button>
                                     <button data-record="{{ identifier[key] }}" class="delete btn btn-labeled btn-danger delete">
-                                        <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleCrudBundle') }}
+                                        <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}
                                     </button>
                                 </div>
                             </td>
@@ -61,7 +61,7 @@
                 </table>
                 <div class="padding-top-7">
                     <div class="pull-left">
-                        <a href = "#" class="btn btn-primary add-new">{{ 'action.add' | trans({}, 'IhsanSimpleCrudBundle') }}</a>
+                        <a href = "#" class="btn btn-primary add-new">{{ 'action.add' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
                     </div>
                     <div class="pull-right">
                         {{ knp_pagination_render(pagination) }}

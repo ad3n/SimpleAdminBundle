@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleCrudBundle\Controller;
+namespace Ihsan\SimpleAdminBundle\Controller;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>

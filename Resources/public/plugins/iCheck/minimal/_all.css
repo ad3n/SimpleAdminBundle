@@ -8,7 +8,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(red.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -54,7 +54,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-red,
     .iradio_minimal-red {
-        background-image: url(red@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/red@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -70,7 +70,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(green.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/green.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -116,7 +116,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-green,
     .iradio_minimal-green {
-        background-image: url(green@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/green@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -132,7 +132,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(blue.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/blue.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -178,7 +178,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-blue,
     .iradio_minimal-blue {
-        background-image: url(blue@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/blue@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -194,7 +194,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(aero.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/aero.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -240,7 +240,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-aero,
     .iradio_minimal-aero {
-        background-image: url(aero@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/aero@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -256,7 +256,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(grey.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/grey.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -302,7 +302,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-grey,
     .iradio_minimal-grey {
-        background-image: url(grey@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/grey@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -318,7 +318,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(orange.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/orange.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -364,7 +364,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-orange,
     .iradio_minimal-orange {
-        background-image: url(orange@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/orange@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -380,7 +380,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(yellow.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/yellow.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -426,7 +426,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-yellow,
     .iradio_minimal-yellow {
-        background-image: url(yellow@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/yellow@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -442,7 +442,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(pink.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/pink.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -488,7 +488,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-pink,
     .iradio_minimal-pink {
-        background-image: url(pink@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/pink@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }
@@ -504,7 +504,7 @@
     padding: 0;
     width: 18px;
     height: 18px;
-    background: url(purple.png) no-repeat;
+    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/purple.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -550,7 +550,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_minimal-purple,
     .iradio_minimal-purple {
-        background-image: url(purple@2x.png);
+        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/minimal/purple@2x.png);
         -webkit-background-size: 200px 20px;
         background-size: 200px 20px;
     }

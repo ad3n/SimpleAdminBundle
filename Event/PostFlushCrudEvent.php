@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleCrudBundle\Event;
+namespace Ihsan\SimpleAdminBundle\Event;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -8,7 +8,7 @@ namespace Ihsan\SimpleCrudBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ihsan\SimpleCrudBundle\Entity\EntityInterface;
+use Ihsan\SimpleAdminBundle\Entity\EntityInterface;
 
 class PostFlushCrudEvent extends Event
 {
