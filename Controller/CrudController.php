@@ -73,7 +73,7 @@ abstract class CrudController extends Controller
 
             if (method_exists($entity, $method)) {
                 array_push($data, array(
-                   'name' => $property,
+                    'name' => $property,
                     'value' => call_user_func_array(array($entity, $method), array()),
                 ));
             }
