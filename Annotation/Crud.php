@@ -27,4 +27,12 @@ final class Crud
     public $pageTitle;
 
     public $pageDescription;
+
+    public $newActionTemplate;
+
+    public $editActionTemplate;
+
+    public $showActionTemplate;
+
+    public $listActionTemplate;
 }

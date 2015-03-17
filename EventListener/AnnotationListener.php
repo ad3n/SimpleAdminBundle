@@ -20,6 +20,10 @@ use Ihsan\SimpleCrudBundle\Annotation\PageDescription;
 use Ihsan\SimpleCrudBundle\Annotation\PageTitle;
 use Ihsan\SimpleCrudBundle\Annotation\GridFields;
 use Ihsan\SimpleCrudBundle\Annotation\ShowFields;
+use Ihsan\SimpleCrudBundle\Annotation\NewActionTemplate;
+use Ihsan\SimpleCrudBundle\Annotation\EditActionTemplate;
+use Ihsan\SimpleCrudBundle\Annotation\ShowActionTemplate;
+use Ihsan\SimpleCrudBundle\Annotation\ListActionTemplate;
 
 final class AnnotationListener
 {
@@ -50,10 +54,37 @@ final class AnnotationListener
 
         foreach ($this->reader->getClassAnnotations($object) as $annotation) {
             if ($annotation instanceof Crud) {
-                $controller->setEntityClass($annotation->entityClass);
-                $controller->setFormClass($annotation->formClass);
-                $controller->setPageTitle($annotation->pageTitle);
-                $controller->setPageDescription($annotation->pageDescription);
+                if ($annotation->entityClass) {
+                    $controller->setEntityClass($annotation->entityClass);
+                }
+
+                if ($annotation->formClass) {
+                    $controller->setFormClass($annotation->formClass);
+                }
+
+                if ($annotation->pageTitle) {
+                    $controller->setPageTitle($annotation->pageTitle);
+                }
+
+                if ($annotation->pageDescription) {
+                    $controller->setPageDescription($annotation->pageDescription);
+                }
+
+                if ($annotation->newActionTemplate) {
+                    $controller->setNewActionTemplate($annotation->newActionTemplate);
+                }
+
+                if ($annotation->editActionTemplate) {
+                    $controller->setEditActionTemplate($annotation->editActionTemplate);
+                }
+
+                if ($annotation->showActionTemplate) {
+                    $controller->setShowActioinTemplate($annotation->showActionTemplate);
+                }
+
+                if ($annotation->listActionTemplate) {
+                    $controller->setListActionTemplate($annotation->listActionTemplate);
+                }
 
                 if ('true' === strtolower($annotation->hasEventListener)) {
                     $controller->hasEventListener();
@@ -62,32 +93,72 @@ final class AnnotationListener
                 if ('true' === strtolower($annotation->normalizeFilter)) {
                     $controller->normalizeFilter();
                 }
+
+                if (is_array($annotation->showFields)) {
+                    $controller->setShowFields($annotation->showFields);
+                }
+
+                if (is_array($annotation->gridFields)) {
+                    $controller->setGridFields($annotation->gridFields);
+                }
             }
 
             if ($annotation instanceof EntityClass) {
-                $controller->setEntityClass($annotation->value);
+                if ($annotation->value) {
+                    $controller->setEntityClass($annotation->value);
+                }
             }
 
             if ($annotation instanceof FormClass) {
-                $controller->setFormClass($annotation->value);
+                if ($annotation->value) {
+                    $controller->setFormClass($annotation->value);
+                }
             }
 
             if ($annotation instanceof PageTitle) {
-                $controller->setPageTitle($annotation->value);
+                if ($annotation->value) {
+                    $controller->setPageTitle($annotation->value);
+                }
             }
 
             if ($annotation instanceof PageDescription) {
-                $controller->setPageDescription($annotation->value);
+                if ($annotation->value) {
+                    $controller->setPageDescription($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof NewActionTemplate) {
+                if ($annotation->value) {
+                    $controller->setNewActionTemplate($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof EditActionTemplate) {
+                if ($annotation->value) {
+                    $controller->setEditActionTemplate($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof ShowActionTemplate) {
+                if ($annotation->value) {
+                    $controller->setShowActioinTemplate($annotation->value);
+                }
+            }
+
+            if ($annotation instanceof ListActionTemplate) {
+                if ($annotation->value) {
+                    $controller->setListActionTemplate($annotation->value);
+                }
             }
 
             if ($annotation instanceof ShowFields) {
-                if ($annotation->isValid()) {//silent is gold
+                if ($annotation->isValid()) {
                     $controller->setShowFields($annotation->value);
                 }
             }
 
             if ($annotation instanceof GridFields) {
-                if ($annotation->isValid()) {//silent is gold
+                if ($annotation->isValid()) {
                     $controller->setGridFields($annotation->value);
                 }
             }

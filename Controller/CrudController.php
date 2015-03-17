@@ -38,6 +38,14 @@ abstract class CrudController extends Controller
 
     protected $gridFields = array();
 
+    protected $newActionTemplate = 'IhsanSimpleCrudBundle:Crud:new.html.twig';
+
+    protected $editActionTemplate = 'IhsanSimpleCrudBundle:Crud:new.html.twig';
+
+    protected $showActionTemplate = 'IhsanSimpleCrudBundle:Crud:show.html.twig';
+
+    protected $listActionTemplate = 'IhsanSimpleCrudBundle:Crud:list.html.twig';
+
     /**
      * @Route("/new/")
      * @Method({"POST", "GET"})
@@ -46,7 +54,7 @@ abstract class CrudController extends Controller
     {
         $entity = $this->entityClass;
 
-        return $this->handle($request, new $entity(), 'add');
+        return $this->handle($request, new $entity(), $this->newActionTemplate, 'new');
     }
 
     /**
@@ -55,7 +63,7 @@ abstract class CrudController extends Controller
      */
     public function editAction(Request $request, $id)
     {
-        return $this->handle($request, $this->findOr404Error($id), 'edit');
+        return $this->handle($request, $this->findOr404Error($id), $this->editActionTemplate, 'edit');
     }
 
     /**
@@ -79,7 +87,7 @@ abstract class CrudController extends Controller
             }
         }
 
-        return $this->render($this->container->getParameter('ihsan.simple_crud.view.show'), array(
+        return $this->render($this->showActionTemplate, array(
             'data' => $data,
             'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
             'page_title' => $this->pageTitle.' | Show',
@@ -142,13 +150,13 @@ abstract class CrudController extends Controller
             $data[$key] = $temp;
         }
 
-        return $this->render($this->container->getParameter('ihsan.simple_crud.view.grid'),
+        return $this->render($this->listActionTemplate,
             array(
                 'pagination' => $pagination,
                 'start' => ($page - 1) * $this->container->getParameter('ihsan.simple_crud.per_page'),
                 'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
                 'header' => array_merge($this->gridFields(), array('action')),
-                'page_title' => $this->pageTitle.' | List',
+                'page_title' => 'List '.$this->pageTitle,
                 'page_description' => $this->pageDescription,
                 'identifier' => $identifier,
                 'record' => $data,
@@ -157,9 +165,9 @@ abstract class CrudController extends Controller
         );
     }
 
-    protected function handle(Request $request, $data, $action = 'add')
+    protected function handle(Request $request, $data, $template, $action = 'new')
     {
-        $this->outputParameter['page_title'] = $this->pageTitle. ' | '.ucfirst($action);
+        $this->outputParameter['page_title'] = $action.' '.$this->pageTitle;
         $this->outputParameter['page_description'] = $this->pageDescription;
 
         $form = $this->getForm($data);
@@ -199,10 +207,10 @@ abstract class CrudController extends Controller
         }
 
         $this->outputParameter['form'] = $form->createView();
-        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_crud.view.form_theme');
+        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_crud.themes.form_theme');
         $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_crud.menu');
 
-        return $this->render($this->container->getParameter('ihsan.simple_crud.view.form'), $this->outputParameter);
+        return $this->render($template, $this->outputParameter);
     }
 
     protected function findOr404Error($id)
@@ -351,5 +359,49 @@ abstract class CrudController extends Controller
         $form->setData($data);
 
         return $form;
+    }
+
+    /**
+     * @param string $template
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setNewActionTemplate($template)
+    {
+        $this->newActionTemplate = $template;
+
+        return $this;
+    }
+
+    /**
+     * @param string $template
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setEditActionTemplate($template)
+    {
+        $this->editActionTemplate = $template;
+
+        return $this;
+    }
+
+    /**
+     * @param string $template
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setShowActioinTemplate($template)
+    {
+        $this->showActionTemplate = $template;
+
+        return $this;
+    }
+
+    /**
+     * @param string $template
+     * @return \Ihsan\SimpleCrudBundle\Controller\CrudController
+     */
+    public function setListActionTemplate($template)
+    {
+        $this->listActionTemplate = $template;
+
+        return $this;
     }
 }

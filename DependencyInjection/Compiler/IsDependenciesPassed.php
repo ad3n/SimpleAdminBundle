@@ -34,6 +34,6 @@ class IsDependenciesPassed implements CompilerPassInterface
            throw new InvalidDefinitionException('Ihsan\Compressor is not loaded.');
         }
 
-        $container->setParameter('knp_paginator.template.pagination', $container->getParameter('ihsan.simple_crud.view.pagination'));
+        $container->setParameter('knp_paginator.template.pagination', $container->getParameter('ihsan.simple_crud.themes.pagination'));
     }
 }
