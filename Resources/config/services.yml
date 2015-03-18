@@ -32,12 +32,12 @@ services:
         tags:
             - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }
 
-    app.menu:
+    ihsan.simple_admin.menu:
         class: Ihsan\SimpleAdminBundle\Menu\Builder
         arguments:
             - @router
 
-    app.main_menu:
+    ihsan.simple_admin.main_menu:
         class: Knp\Menu\MenuItem
         factory_service: app.menu
         factory_method: mainMenu
@@ -45,4 +45,4 @@ services:
             - @knp_menu.factory
             - []
         tags:
-            - { name: knp_menu.menu, alias: main }
+            - { name: knp_menu.menu, alias: ihsan_simple_admin_main }
