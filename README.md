@@ -18,7 +18,14 @@ IhsanSimpleBundle makes it easy for you to create a simple backed using Symfony
 Just add this line and update your composer
 
 ~~~~~ json
-"ihsanudin/simple-admin-bundle": "0.0.*@dev"
+"require": {
+    "knplabs/knp-paginator-bundle": "~2.4",
+    "knplabs/knp-menu-bundle": "~2",
+    "fkr/cssurlrewrite-bundle": "~1.0",
+    "friendsofsymfony/user-bundle": "2.0.x-dev",
+    "ihsanudin/compressor": "dev-master"
+    "ihsanudin/simple-admin-bundle": "0.0.*@dev"
+}
 ~~~~~
 
 ~~~~~ php
@@ -28,9 +35,11 @@ $bundles = array(
     new Fkr\CssURLRewriteBundle\FkrCssURLRewriteBundle(),
     new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
     new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-    new Ihsan\SimpleCrudBundle\IhsanSimpleCrudBundle(),
+    new Ihsan\SimpleAdminBundle\IhsanSimpleAdminBundle(),
 );
 ~~~~~
+
+Run ``php app/console assets:install web`` to install assets
 
 **Please read official documentation of all external bundles for instalation and setup before continue**
 
