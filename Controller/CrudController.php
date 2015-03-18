@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleAdminBundle\Event\PostFlushCrudEvent;
 use Ihsan\SimpleAdminBundle\Event\PrePersistCrudEvent;
-use Ihsan\SimpleAdminBundle\IhsanSimpleCrudEvents as Event;
+use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 abstract class CrudController extends Controller
 {

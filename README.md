@@ -265,7 +265,7 @@ use Ihsan\SimpleAdminBundle\Annotation\Crud;
  * @Route("/user")
  * @Crud(entityClass="AppBundle\Entity\ProductCategory", formClass="AppBundle\Form\ProductCategoryType")
  */
-class UserController extends CrudController
+class ProductCategoryController extends CrudController
 {
 }
 ~~~~~
@@ -288,16 +288,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Ihsan\SimpleAdminBundle\Annotation\PageTitle;
 use Ihsan\SimpleAdminBundle\Annotation\PageDescription;
-use Ihsan\SimpleAdminBundle\Annotation\GridFields;
-use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
 
 /**
  * @Route("/user")
  *
  * @PageTitle("user.page_title")
  * @PageDescription("user.page_description")
- * @GridFields({"username", "fullName", "email", "roles"})
- * @ShowFields({"username", "fullName", "email", "roles"})
  */
 class UserController extends CrudController
 {
@@ -311,10 +307,55 @@ You can also use ``@Crud`` global annotation with key ``pageTitle`` and ``pageDe
 Same as page title and page description but using ``@GridFields`` and ``gridFields`` on ``@Crud`` global annotation
 The value of parameter must be an array
 
-####Customize Form Fields####
+~~~~~ php
+<?php
+namespace Ihsan\SimpleAdminBundle\Controller;
 
-Same as page title and page description but using ``@FormFields`` and ``formFields`` on ``@Crud`` global annotation
+/**
+ * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
+ * Url: http://blog.khodam.org
+ */
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Ihsan\SimpleAdminBundle\Annotation\GridFields;
+
+/**
+ * @Route("/user")
+ * @GridFields({"username", "fullName", "email", "roles"})
+ */
+class UserController extends CrudController
+{
+}
+~~~~~
+
+####Customize Show Fields####
+
+Same as page title and page description but using ``@ShowFields`` and ``showFields`` on ``@Crud`` global annotation
 The value of parameter must be an array
+
+~~~~~ php
+<?php
+namespace Ihsan\SimpleAdminBundle\Controller;
+
+/**
+ * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
+ * Url: http://blog.khodam.org
+ */
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
+
+/**
+ * @Route("/user")
+ * @ShowFields({"username", "fullName", "email", "roles"})
+ */
+class UserController extends CrudController
+{
+}
+~~~~~
 
 ####Customize Action Template####
 
@@ -329,10 +370,36 @@ Use ``@NormalizeFilter`` without parameter
 
 ####Event Listener#####
 
+This bundle have 2 event ``ihsan.simple_admin.pre_persist_event`` and ``ihsan.simple_admin.post_flush_event``. Just create an event listener to listen that events.
+
 ####Configuration Reference####
+
+~~~~~ yml
+ihsan_simple_admin:
+    app_title: 'IhsanSimpleAdmin'
+    per_page: 10
+    identifier: 'id'
+    date_time_format: 'd-m-Y' #php date time format
+    menu: 'main'
+    filter: 'name'
+    translation_domain: 'IhsanSimpleAdminBundle'
+    security:
+        user:
+            form_class: user_form
+            entity_class: AppBundle\Entity\User
+    grid_action: #not work for this time
+        show: true
+        edit: true
+        delete: true
+    themes:
+        dashboard: 'IhsanSimpleAdminBundle:Index:index.html.twig'
+        form_theme: 'IhsanSimpleAdminBundle:Form:fields.html.twig'
+        pagination: 'IhsanSimpleAdminBundle:Layout:pagination.html.twig'
+~~~~~
 
 ####TODO####
 - Improvement translation
+- Grid Action (urgent)
 - Add more features
 
 ####Resources We Use####
