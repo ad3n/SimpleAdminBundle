@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('app_title')
-                    ->defaultValue('SimpleAdminBundle')
+                    ->defaultValue('IhsanSimpleAdmin')
                 ->end()
                 ->integerNode('per_page')
                     ->defaultValue(10)

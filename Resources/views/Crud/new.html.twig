@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block menu %}
-    {{ knp_menu_render(menu, { currentClass: 'active' }) }}
+    {{ knp_menu_render(menu, { currentClass: 'active', 'allow_safe_labels': true }) }}
 {% endblock %}
 
 {% block content %}
