@@ -360,8 +360,11 @@ class UserController extends CrudController
 ####Customize Action Template####
 
 Use ``@NewActionTemplate`` with template path as parameter for override new template or use ``newActionTemplate`` on ``@Crud`` global annotation
+
 Use ``@EditActionTemplate`` with template path as parameter for override edit template or use ``editActionTemplate`` on ``@Crud`` global annotation
+
 Use ``@ShowActionTemplate`` with template path as parameter for override show template or use ``showActionTemplate`` on ``@Crud`` global annotation
+
 Use ``@ListActionTemplate`` with template path as parameter for override list template or use ``listActionTemplate`` on ``@Crud`` global annotation
 
 ####Normalize Filter####
