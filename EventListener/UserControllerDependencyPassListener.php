@@ -9,7 +9,7 @@ namespace Ihsan\SimpleAdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Ihsan\SimpleAdminBundle\Controller\UserController;
+use Ihsan\SimpleAdminBundle\Security\UserController;
 
 final class UserControllerDependencyPassListener
 {

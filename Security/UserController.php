@@ -1,10 +1,12 @@
 <?php
-namespace Ihsan\SimpleAdminBundle\Controller;
+namespace Ihsan\SimpleAdminBundle\Security;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
  * Url: http://blog.khodam.org
  */
+
+use Ihsan\SimpleAdminBundle\Controller\CrudController;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;

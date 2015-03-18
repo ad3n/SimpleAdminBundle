@@ -43,7 +43,11 @@
                 {% endfor%}
                 <div>
                     <a href="{{ back }}" class="btn btn-primary">{{ 'action.back' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
-                    <a href="#" class="btn btn-danger delete">{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
+                    {% for i, v in action %}
+                        {% if v is sameas('delete') %}
+                            <a href="#" class="btn btn-danger delete">{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

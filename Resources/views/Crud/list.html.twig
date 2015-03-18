@@ -59,15 +59,23 @@
                             {% endfor %}
                             <td width="22%">
                                 <div class="btn-group" role="group">
-                                    <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-success show">
-                                        <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleAdminBundle') }}
-                                    </button>
-                                    <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-warning edit">
-                                        <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleAdminBundle') }}
-                                    </button>
-                                    <button data-record="{{ identifier[key] }}" class="delete btn btn-labeled btn-danger delete">
-                                        <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}
-                                    </button>
+                                    {% for i, v in action %}
+                                        {% if v is sameas('show') %}
+                                            <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-success show">
+                                                <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                            </button>
+                                        {% endif %}
+                                        {% if v is sameas('edit') %}
+                                            <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-warning edit">
+                                                <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                            </button>
+                                        {% endif %}
+                                        {% if v is sameas('delete') %}
+                                            <button data-record="{{ identifier[key] }}" class="delete btn btn-labeled btn-danger delete">
+                                                <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                            </button>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </td>
                         </tr>

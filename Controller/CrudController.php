@@ -63,6 +63,8 @@ abstract class CrudController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $this->isAllowedOr404Error('edit');
+
         return $this->handle($request, $this->findOr404Error($id), $this->editActionTemplate, 'edit');
     }
 
@@ -72,6 +74,8 @@ abstract class CrudController extends Controller
      */
     public function showAction(Request $request, $id)
     {
+        $this->isAllowedOr404Error('show');
+
         $entity = $this->findOr404Error($id);
 
         $data = array();
@@ -96,6 +100,7 @@ abstract class CrudController extends Controller
             'page_title' => 'Show'.' '.$translator->trans($this->pageTitle, array(), $translationDomain),
             'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
             'back' => $request->headers->get('referer'),
+            'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
         ));
     }
 
@@ -105,6 +110,8 @@ abstract class CrudController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $this->isAllowedOr404Error('delete');
+
         $entity = $this->findOr404Error($id);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($entity);
@@ -165,6 +172,7 @@ abstract class CrudController extends Controller
                 'page_title' => 'List '.$translator->trans($this->pageTitle, array(), $translationDomain),
                 'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
                 'identifier' => $identifier,
+                'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
                 'record' => $data,
                 'filter' => $filter,
             )
@@ -234,6 +242,18 @@ abstract class CrudController extends Controller
         }
 
         return $entity;
+    }
+
+    protected function isAllowedOr404Error($action)
+    {
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+
+        if (! in_array($action, $this->container->getParameter('ihsan.simple_admin.grid_action'))) {
+            throw new NotFoundHttpException($translator->trans('message.request_not_found', array(), $translationDomain));
+        }
+
+        return true;
     }
 
     protected function entityProperties()

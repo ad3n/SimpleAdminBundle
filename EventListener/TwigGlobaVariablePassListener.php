@@ -9,8 +9,6 @@ namespace Ihsan\SimpleAdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Ihsan\SimpleAdminBundle\Controller\UserController;
-
 final class TwigGlobaVariablePassListener
 {
     /**

@@ -28,13 +28,13 @@ class IhsanSimpleAdminExtension extends Extension
         $container->setParameter('ihsan.simple_admin.security.user_entity', $config['security']['user']['entity_class']);
 
         $action = array();
-        if ($config['per_page']['show']) {
+        if ($config['grid_action']['show']) {
             array_push($action, 'show');
         }
-        if ($config['per_page']['edit']) {
+        if ($config['grid_action']['edit']) {
             array_push($action, 'edit');
         }
-        if ($config['per_page']['delete']) {
+        if ($config['grid_action']['delete']) {
             array_push($action, 'delete');
         }
 

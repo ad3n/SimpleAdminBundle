@@ -31,3 +31,18 @@ services:
             - @service_container
         tags:
             - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }
+
+    app.menu:
+        class: Ihsan\SimpleAdminBundle\Menu\Builder
+        arguments:
+            - @router
+
+    app.main_menu:
+        class: Knp\Menu\MenuItem
+        factory_service: app.menu
+        factory_method: mainMenu
+        arguments:
+            - @knp_menu.factory
+            - []
+        tags:
+            - { name: knp_menu.menu, alias: main }

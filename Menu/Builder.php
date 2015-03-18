@@ -8,9 +8,20 @@ namespace Ihsan\SimpleAdminBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Routing\Router;
 
 class Builder extends ContainerAware
 {
+    /**
+     * @var Symfony\Component\Routing\RouteCollection
+     */
+    protected $routeCollection;
+
+    public function __construct(Router $router)
+    {
+        $this->routeCollection = $router->getRouteCollection();
+    }
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root', array(
@@ -28,6 +39,15 @@ class Builder extends ContainerAware
             )
         ));
 
+        if ($this->routeCollection->get('ihsan_simpleadmin_security_user_new')) {
+            $this->addUserMenu($menu);
+        }
+
+        return $menu;
+    }
+
+    protected function addUserMenu($menu)
+    {
         $menu->addChild('User', array(
             'uri' => '#',
             'label' => '<i class="fa fa-user"></i> User Management<i class="fa fa-angle-double-left pull-right"></i></a>',
@@ -40,19 +60,17 @@ class Builder extends ContainerAware
         $menu['User']->setChildrenAttribute('class', 'treeview-menu');
 
         $menu['User']->addChild('Add User', array(
-            'route' => 'ihsan_simpleadmin_user_new',
+            'route' => 'ihsan_simpleadmin_security_user_new',
             'attributes' => array(
                 'class' => 'treeview'
             )
         ));
 
         $menu['User']->addChild('User List', array(
-            'route' => 'ihsan_simpleadmin_user_list',
+            'route' => 'ihsan_simpleadmin_security_user_list',
             'attributes' => array(
                 'class' => 'treeview'
             )
         ));
-
-        return $menu;
     }
 }

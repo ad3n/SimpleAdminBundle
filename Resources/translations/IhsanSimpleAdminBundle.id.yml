@@ -11,6 +11,7 @@ message:
     delete_confirmation: "Apakah Anda yakin akan menghapus data ini?"
     data_saved: "Data berhasil disimpan"
     data_not_found: "Data dengan id %id% tidak ditemukan"
+    request_not_found: "Halaman yang Anda minta tidak ditemukan"
 
 action:
     login: "Masuk"
