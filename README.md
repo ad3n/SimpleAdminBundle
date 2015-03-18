@@ -23,7 +23,7 @@ Just add this line and update your composer
     "knplabs/knp-menu-bundle": "~2",
     "fkr/cssurlrewrite-bundle": "~1.0",
     "friendsofsymfony/user-bundle": "2.0.x-dev",
-    "ihsanudin/compressor": "dev-master"
+    "ihsanudin/compressor": "dev-master",
     "ihsanudin/simple-admin-bundle": "0.0.*@dev"
 }
 ~~~~~
