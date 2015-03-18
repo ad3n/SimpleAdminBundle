@@ -88,6 +88,15 @@ abstract class CrudController extends Controller
                     'name' => $property,
                     'value' => call_user_func_array(array($entity, $method), array()),
                 ));
+            } else {
+                $method = 'is'.ucfirst($property);
+
+                if (method_exists($entity, $method)) {
+                    array_push($data, array(
+                        'name' => $property,
+                        'value' => call_user_func_array(array($entity, $method), array()),
+                    ));
+                }
             }
         }
 
@@ -154,6 +163,12 @@ abstract class CrudController extends Controller
 
                 if (method_exists($record, $method)) {
                     array_push($temp, call_user_func_array(array($record, $method), array()));
+                } else {
+                    $method = 'is'.ucfirst($property);
+
+                    if (method_exists($record, $method)) {
+                        array_push($temp, call_user_func_array(array($record, $method), array()));
+                    }
                 }
             }
 
