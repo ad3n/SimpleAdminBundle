@@ -87,11 +87,14 @@ abstract class CrudController extends Controller
             }
         }
 
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+
         return $this->render($this->showActionTemplate, array(
             'data' => $data,
-            'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
-            'page_title' => $this->pageTitle.' | Show',
-            'page_description' => $this->pageDescription,
+            'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
+            'page_title' => 'Show'.' '.$translator->trans($this->pageTitle, array(), $translationDomain),
+            'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
             'back' => $request->headers->get('referer'),
         ));
     }
@@ -119,18 +122,18 @@ abstract class CrudController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($this->entityClass);
 
-        $qb = $repo->createQueryBuilder('o')->select('o')->addOrderBy(sprintf('o.%s', $this->container->getParameter('ihsan.simple_crud.identifier')), 'DESC');
+        $qb = $repo->createQueryBuilder('o')->select('o')->addOrderBy(sprintf('o.%s', $this->container->getParameter('ihsan.simple_admin.identifier')), 'DESC');
         $filter = $this->normalizeFilter ? strtoupper($request->query->get('filter')) : $request->query->get('filter');
 
         if ($filter) {
-            $qb->andWhere(sprintf('o.%s LIKE :filter', $this->container->getParameter('ihsan.simple_crud.filter')));
+            $qb->andWhere(sprintf('o.%s LIKE :filter', $this->container->getParameter('ihsan.simple_admin.filter')));
             $qb->setParameter('filter', strtr('%filter%', array('filter' => $filter)));
         }
 
         $page = $request->query->get('page', 1);
         $paginator  = $this->container->get('knp_paginator');
 
-        $pagination = $paginator->paginate($qb, $page, $this->container->getParameter('ihsan.simple_crud.per_page'));
+        $pagination = $paginator->paginate($qb, $page, $this->container->getParameter('ihsan.simple_admin.per_page'));
 
         $data = array();
         $identifier = array();
@@ -150,14 +153,17 @@ abstract class CrudController extends Controller
             $data[$key] = $temp;
         }
 
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+
         return $this->render($this->listActionTemplate,
             array(
                 'pagination' => $pagination,
-                'start' => ($page - 1) * $this->container->getParameter('ihsan.simple_crud.per_page'),
-                'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
+                'start' => ($page - 1) * $this->container->getParameter('ihsan.simple_admin.per_page'),
+                'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
                 'header' => array_merge($this->gridFields(), array('action')),
-                'page_title' => 'List '.$this->pageTitle,
-                'page_description' => $this->pageDescription,
+                'page_title' => 'List '.$translator->trans($this->pageTitle, array(), $translationDomain),
+                'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
                 'identifier' => $identifier,
                 'record' => $data,
                 'filter' => $filter,
@@ -167,8 +173,11 @@ abstract class CrudController extends Controller
 
     protected function handle(Request $request, $data, $template, $action = 'new')
     {
-        $this->outputParameter['page_title'] = $action.' '.$this->pageTitle;
-        $this->outputParameter['page_description'] = $this->pageDescription;
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+
+        $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
+        $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
 
         $form = $this->getForm($data);
         $form->handleRequest($request);
@@ -202,23 +211,26 @@ abstract class CrudController extends Controller
                     $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
                 }
 
-                $this->outputParameter['success'] = 'Data berhasil disimpan.';
+                $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
             }
         }
 
         $this->outputParameter['form'] = $form->createView();
-        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_crud.themes.form_theme');
-        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_crud.menu');
+        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
+        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
 
         return $this->render($template, $this->outputParameter);
     }
 
     protected function findOr404Error($id)
     {
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+
         $entity = $this->getDoctrine()->getManager()->getRepository($this->entityClass)->find($id);
 
         if (! $entity) {
-            throw new NotFoundHttpException(sprintf('Data with id %s not found.', $id));
+            throw new NotFoundHttpException($translator->trans('message.data_not_found', array('%id%', $id), $translationDomain));
         }
 
         return $entity;
@@ -355,7 +367,13 @@ abstract class CrudController extends Controller
 
     protected function getForm($data = null)
     {
-        $form = $this->createForm(new $this->formClass());
+        try {
+            $formObject = $this->container->get($this->formClass);
+        } catch (\Exception $ex) {
+            $formObject = new $this->formClass();
+        }
+
+        $form = $this->createForm($formObject);
         $form->setData($data);
 
         return $form;

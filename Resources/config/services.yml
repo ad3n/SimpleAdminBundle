@@ -1,7 +1,21 @@
 services:
-    ihsan.simple_crud.crud_annotation_reader:
+    ihsan.simple_admin.crud_annotation_reader:
         class: Ihsan\SimpleAdminBundle\EventListener\AnnotationListener
         arguments:
             - @annotation_reader
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
+
+    ihsan.simple_admin.user_controller_dependency_pass:
+        class: Ihsan\SimpleAdminBundle\EventListener\UserControllerDependencyPassListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
+
+    ihsan.simple_admin.twig_global_variable_pass:
+        class: Ihsan\SimpleAdminBundle\EventListener\TwigGlobaVariablePassListener
+        arguments:
+            - @service_container
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }

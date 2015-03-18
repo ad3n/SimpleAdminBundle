@@ -21,17 +21,30 @@
         <div class="box box-success box-solid">
             <div class="box-header">
                 <h3 class="box-title">{{ page_title }}</h3>
-                <form role="form">
-                    <div class="box-body">
-                        {% for property in data %}
-                            <p>{{ property.name | humanize }}: {{ property.value }}</p>
-                        {% endfor%}
-                        <div>
-                            <a href="{{ back }}" class="btn btn-primary">{{ 'action.back' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
-                            <a href="#" class="btn btn-danger delete">{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
-                        </div>
-                    </div>
-                </form>
+            </div>
+            <div class="box-body">
+                {% for property in data %}
+                    <p>
+                        {{ property.name | humanize }}:
+                        {% if property.value.timezone is defined %}
+                            {{ property.value | date(date_time_format) }}
+                        {% else %}
+                            {% if property.value is iterable %}
+                                {% set value = '' %}
+                                {% for i, v in property.value %}
+                                    {% set value = value ~ v ~ ', ' %}
+                                {% endfor %}
+                                {{ value | trim(', ')}}
+                            {% else %}
+                                {{ property.value }}
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                {% endfor%}
+                <div>
+                    <a href="{{ back }}" class="btn btn-primary">{{ 'action.back' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
+                    <a href="#" class="btn btn-danger delete">{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
+                </div>
             </div>
         </div>
     </div>

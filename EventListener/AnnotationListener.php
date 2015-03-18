@@ -50,9 +50,9 @@ final class AnnotationListener
             return;
         }
 
-        $object = new \ReflectionObject($controller);
+        $reflectionObject = new \ReflectionObject($controller);
 
-        foreach ($this->reader->getClassAnnotations($object) as $annotation) {
+        foreach ($this->reader->getClassAnnotations($reflectionObject) as $annotation) {
             if ($annotation instanceof Crud) {
                 if ($annotation->entityClass) {
                     $controller->setEntityClass($annotation->entityClass);

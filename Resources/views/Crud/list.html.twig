@@ -41,7 +41,21 @@
                         <tr>
                             <td>{{ key + 1 }}</td>
                             {% for i, v in value %}
-                                <td>{{ v }}</td>
+                                <td>
+                                {% if v.timezone is defined %}
+                                    {{ v | date(date_time_format) }}
+                                {% else %}
+                                    {% if v is iterable %}
+                                        {% set value = '' %}
+                                        {% for i, v in v %}
+                                            {% set value = value ~ v ~ ', ' %}
+                                        {% endfor %}
+                                        {{ value | trim(', ')}}
+                                    {% else %}
+                                        {{ v }}
+                                    {% endif %}
+                                {% endif %}
+                                </td>
                             {% endfor %}
                             <td width="22%">
                                 <div class="btn-group" role="group">

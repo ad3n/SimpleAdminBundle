@@ -20,8 +20,8 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
-        return $this->render($this->container->getParameter('ihsan.simple_crud.themes.dashboard'), array(
-            'menu' => $this->container->getParameter('ihsan.simple_crud.menu'),
+        return $this->render($this->container->getParameter('ihsan.simple_admin.themes.dashboard'), array(
+            'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
         ));
     }
 }

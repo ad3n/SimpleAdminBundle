@@ -4,10 +4,13 @@ message:
     search: "Masukkan kata kunci"
     info: "Pesan Informasi"
     login_title: "Halaman Login"
+    error_title: "Terjadi kesalahan"
     username: "Masukkan username"
     password: "Masukkan password"
     remember_me: "Ingat saya selalu"
     delete_confirmation: "Apakah Anda yakin akan menghapus data ini?"
+    data_saved: "Data berhasil disimpan"
+    data_not_found: "Data dengan id %id% tidak ditemukan"
 
 action:
     login: "Masuk"
@@ -23,3 +26,7 @@ link:
     home: "Dashboard"
     logout: "Logout"
     profile: "Profil"
+
+user:
+    page_title: "User Management"
+    page_description: "Tambah, Lihat, Ubah dan Hapus User"
