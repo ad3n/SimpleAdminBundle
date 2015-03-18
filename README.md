@@ -41,6 +41,15 @@ $bundles = array(
 
 Run ``php app/console assets:install web`` to install assets
 
+Add Route
+
+~~~~~ yml
+ihsan_simple_crud:
+    resource: @IhsanSimpleAdminBundle/Controller
+    type: annotation
+~~~~~
+
+
 **Please read official documentation of all external bundles for instalation and setup before continue**
 
 ~~~~~ yml
@@ -70,12 +79,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Product\Product;
 use Doctrine\Common\Collections\ArrayCollection;
+Ihsan\SimpleAdminBundle\Entity\EntityInterface
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="app_product_category")
  */
-class ProductCategory
+class ProductCategory implements EntityInterface
 {
     /**
      * @ORM\Id
