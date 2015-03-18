@@ -28,8 +28,6 @@ abstract class CrudController extends Controller
 
     protected $normalizeFilter = false;
 
-    protected $hasEventListener = false;
-
     protected $entityClass;
 
     protected $formClass;
@@ -223,16 +221,12 @@ abstract class CrudController extends Controller
                 $prePersistEvent->setEntityMeneger($entityManager);
                 $prePersistEvent->setEntity($entity);
 
-                if ($this->hasEventListener) {
-                    $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
-                }
+                $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
 
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
-                if ($this->hasEventListener) {
-                    $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
-                }
+                $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
 
                 $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
             }
@@ -330,17 +324,6 @@ abstract class CrudController extends Controller
     public function setFormClass($formClass)
     {
         $this->formClass = $formClass;
-
-        return $this;
-    }
-
-    /**
-     * @param boolean $hasEventListener
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
-     */
-    public function hasEventListener($hasEventListener = true)
-    {
-        $this->hasEventListener = $hasEventListener;
 
         return $this;
     }

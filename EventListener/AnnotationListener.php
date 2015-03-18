@@ -14,7 +14,6 @@ use Ihsan\SimpleAdminBundle\Controller\CrudController;
 use Ihsan\SimpleAdminBundle\Annotation\Crud;
 use Ihsan\SimpleAdminBundle\Annotation\FormClass;
 use Ihsan\SimpleAdminBundle\Annotation\EntityClass;
-use Ihsan\SimpleAdminBundle\Annotation\HasEventListener;
 use Ihsan\SimpleAdminBundle\Annotation\NormalizeFilter;
 use Ihsan\SimpleAdminBundle\Annotation\PageDescription;
 use Ihsan\SimpleAdminBundle\Annotation\PageTitle;
@@ -84,10 +83,6 @@ final class AnnotationListener
 
                 if ($annotation->listActionTemplate) {
                     $controller->setListActionTemplate($annotation->listActionTemplate);
-                }
-
-                if ('true' === strtolower($annotation->hasEventListener)) {
-                    $controller->hasEventListener();
                 }
 
                 if ('true' === strtolower($annotation->normalizeFilter)) {
@@ -161,10 +156,6 @@ final class AnnotationListener
                 if ($annotation->isValid()) {
                     $controller->setGridFields($annotation->value);
                 }
-            }
-
-            if ($annotation instanceof HasEventListener) {
-                $controller->hasEventListener();
             }
 
             if ($annotation instanceof NormalizeFilter) {
