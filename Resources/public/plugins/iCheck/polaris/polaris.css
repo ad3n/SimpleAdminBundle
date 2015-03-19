@@ -9,7 +9,7 @@
     padding: 0;
     width: 29px;
     height: 29px;
-    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/polaris/polaris.png) no-repeat;
+    background: url(polaris.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -55,7 +55,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_polaris,
     .iradio_polaris {
-        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/polaris/polaris@2x.png);
+        background-image: url(polaris@2x.png);
         -webkit-background-size: 310px 31px;
         background-size: 310px 31px;
     }

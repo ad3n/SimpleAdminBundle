@@ -26,7 +26,7 @@
         margin: -5px 0 0 0;
         padding: 0;
         overflow: hidden;
-        background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line.png) no-repeat;
+        background: url(line.png) no-repeat;
         border: none;
     }
     .icheckbox_line-green.hover,
@@ -67,7 +67,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_line-green .icheck_line-icon,
     .iradio_line-green .icheck_line-icon {
-        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/line/line@2x.png);
+        background-image: url(line@2x.png);
         -webkit-background-size: 60px 13px;
         background-size: 60px 13px;
     }

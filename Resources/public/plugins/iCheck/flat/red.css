@@ -9,7 +9,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/flat/red.png) no-repeat;
+    background: url(red.png) no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -49,7 +49,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_flat-red,
     .iradio_flat-red {
-        background-image: url(//home/aden/Project/WebPos/src/Ihsan/SimpleAdminBundle/Resources/public/plugins/iCheck/flat/red@2x.png);
+        background-image: url(red@2x.png);
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }

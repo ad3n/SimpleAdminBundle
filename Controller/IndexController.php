@@ -66,7 +66,6 @@ class IndexController extends AbstractController
             'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
             'page_title' => $translator->trans('page.profile.title', array(), $translationDomain),
             'page_description' => $translator->trans('page.profile.description', array(), $translationDomain),
-            'back' => $request->headers->get('referer'),
         ));
     }
 
