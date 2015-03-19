@@ -70,9 +70,8 @@ class Builder
         ));
 
         $menu['Profile']->addChild('ChangePassword', array(
-            'uri' => '#',
             'label' => $this->translator->trans('menu.user.change_password', array(), $this->translationDomain),
-//            'route' => 'ihsan_simpleadmin_security_user_profile',
+            'route' => 'ihsan_simpleadmin_index_changepassword',
             'attributes' => array(
                 'class' => 'treeview'
             )

@@ -28,6 +28,7 @@ class IhsanSimpleAdminExtension extends Extension
         $container->setParameter('ihsan.simple_admin.themes.pagination', $config['themes']['pagination']);
         $container->setParameter('ihsan.simple_admin.security.user_form', $config['security']['user']['form_class']);
         $container->setParameter('ihsan.simple_admin.security.user_entity', $config['security']['user']['entity_class']);
+        $container->setParameter('ihsan.simple_admin.security.change_password', $config['security']['change_password']['form_class']);
 
         $action = array();
         if ($config['grid_action']['show']) {

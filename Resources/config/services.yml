@@ -54,3 +54,8 @@ services:
             - []
         tags:
             - { name: knp_menu.menu, alias: ihsan_simple_admin_main_menu }
+
+    ihsan.simple_admin.change_password_form:
+        class: Ihsan\SimpleAdminBundle\Form\ChangePasswordType
+        arguments:
+            - @service_container

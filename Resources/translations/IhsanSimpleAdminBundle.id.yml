@@ -12,11 +12,15 @@ message:
     data_saved: "Data berhasil disimpan"
     data_not_found: "Data dengan id %id% tidak ditemukan"
     request_not_found: "Halaman yang Anda minta tidak ditemukan"
+    password_must_match: "Password Harus Sama"
+    access_denied: "Anda tidak boleh mengakses halaman ini"
+    old_password_invalid: "Password lama yang Anda masukkan salah"
 
 action:
     login: "Masuk"
     back: "Kembali ke halaman sebelumnya"
     back_to_list: "Kembali ke halaman list"
+    back_to_home: "Kembali ke halaman awal"
     close: "Tutup"
     add: "Tambah baru"
     show: "Detail"
@@ -35,6 +39,9 @@ page:
     profile:
         title: 'Profil Anda'
         description: ''
+    change_password:
+        title: 'Ubah Password'
+        description: ''
 
 menu:
     dashboard: 'Home'
@@ -44,3 +51,9 @@ menu:
         change_password: 'Ubah Password'
         add: 'Tambah User'
         list: 'Daftar User'
+
+form:
+    label:
+        current_password: 'Password Lama'
+        new_password: 'Password Baru'
+        repeat_password: 'Ulangi Password'

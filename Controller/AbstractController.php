@@ -18,6 +18,8 @@ abstract class AbstractController extends Controller
 
     protected $entityClass;
 
+    protected $formClass;
+
     protected function entityProperties()
     {
         $fields = array();
@@ -43,7 +45,7 @@ abstract class AbstractController extends Controller
 
     /**
      * @param array $fields
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\AbstractController
      */
     public function setShowFields(array $fields)
     {
@@ -54,7 +56,7 @@ abstract class AbstractController extends Controller
 
     /**
      * @param string $pageTitle
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\AbstractController
      */
     public function setPageTitle($pageTitle)
     {
@@ -65,11 +67,36 @@ abstract class AbstractController extends Controller
 
     /**
      * @param string $pageDescription
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
+     * @return \Ihsan\SimpleAdminBundle\Controller\AbstractController
      */
     public function setPageDescription($pageDescription)
     {
         $this->pageDescription = $pageDescription;
+
+        return $this;
+    }
+
+    protected function getForm($data = null)
+    {
+        try {
+            $formObject = $this->container->get($this->formClass);
+        } catch (\Exception $ex) {
+            $formObject = new $this->formClass();
+        }
+
+        $form = $this->createForm($formObject);
+        $form->setData($data);
+
+        return $form;
+    }
+
+    /**
+     * @param string $formClass
+     * @return \Ihsan\SimpleAdminBundle\Controller\AbstractController
+     */
+    public function setFormClass($formClass)
+    {
+        $this->formClass = $formClass;
 
         return $this;
     }

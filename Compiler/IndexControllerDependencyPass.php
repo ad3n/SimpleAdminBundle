@@ -40,5 +40,6 @@ final class IndexControllerDependencyPass
         }
 
         $controller->setShowFields($this->container->getParameter('ihsan.simple_admin.profile_fields'));
+        $controller->setFormClass($this->container->getParameter('ihsan.simple_admin.security.change_password'));
     }
 }

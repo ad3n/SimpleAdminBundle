@@ -10,7 +10,9 @@ namespace Ihsan\SimpleAdminBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Ihsan\SimpleAdminBundle\Event\BeforeShowEvent;
+use FOS\UserBundle\Model\UserInterface;
+
+use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 class IndexController extends AbstractController
@@ -56,12 +58,6 @@ class IndexController extends AbstractController
             }
         }
 
-        $event = new BeforeShowEvent();
-        $event->setViewData($data);
-
-        $dispatcher = $this->container->get('event_dispatcher');
-        $dispatcher->dispatch(Event::BEFORE_SHOW_EVENT, $event);
-
         $translator = $this->container->get('translator');
         $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
 
@@ -80,6 +76,57 @@ class IndexController extends AbstractController
      */
     public function changePasswordAction(Request $request)
     {
+        $translator = $this->container->get('translator');
+        $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
 
+        $user = $this->getUser();
+        if (! is_object($user) || ! $user instanceof UserInterface) {
+
+            throw new AccessDeniedException($translator->trans('message.access_denied', array(), $translationDomain));
+        }
+
+        $form = $this->getForm($user);
+        $form->handleRequest($request);
+
+        $this->outputParameter['page_title'] = $translator->trans('page.change_password.title', array(), $translationDomain);
+        $this->outputParameter['page_description'] = $translator->trans('page.change_password.description', array(), $translationDomain);
+        $this->outputParameter['form'] = $form->createView();
+        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
+        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
+
+        if ($request->isMethod('POST')) {
+            if (! $form->isValid()) {
+
+                $this->outputParameter['errors'] = true;
+            } else if ($form->isValid()) {
+                $encoderFactory = $this->container->get('security.encoder_factory');
+                $encoder = $encoderFactory->getEncoder($user);
+                $password = $encoder->encodePassword($form->get('current_password')->getData(), $user->getSalt());
+
+                if ($password !== $user->getPassword()) {
+                    $this->outputParameter['current_password_invalid'] = true;
+
+                    return $this->render('IhsanSimpleAdminBundle:Index:change_password.html.twig', $this->outputParameter);
+                }
+
+                $userManager = $this->container->get('fos_user.user_manager');
+
+                $entity = $form->getData();
+                $entityManager = $this->getDoctrine()->getManager();
+                $dispatcher = $this->container->get('event_dispatcher');
+
+                $event = new PostSaveEvent();
+                $event->setEntityMeneger($entityManager);
+                $event->setEntity($entity);
+
+                $userManager->updateUser($entity);
+
+                $dispatcher->dispatch(Event::POST_SAVE_EVENT, $event);
+
+                $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
+            }
+        }
+
+        return $this->render('IhsanSimpleAdminBundle:Index:change_password.html.twig', $this->outputParameter);
     }
 }

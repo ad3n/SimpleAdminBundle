@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
-use Ihsan\SimpleAdminBundle\Event\BeforeShowEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 abstract class CrudController extends AbstractController
@@ -25,8 +24,6 @@ abstract class CrudController extends AbstractController
     protected $normalizeFilter = false;
 
     protected $gridFields = array();
-
-    protected $formClass;
 
     protected $newActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
@@ -91,12 +88,6 @@ abstract class CrudController extends AbstractController
                 }
             }
         }
-
-        $event = new BeforeShowEvent();
-        $event->setViewData($data);
-
-        $dispatcher = $this->container->get('event_dispatcher');
-        $dispatcher->dispatch(Event::BEFORE_SHOW_EVENT, $event);
 
         $translator = $this->container->get('translator');
         $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
@@ -204,11 +195,14 @@ abstract class CrudController extends AbstractController
         $translator = $this->container->get('translator');
         $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
 
-        $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
-        $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
-
         $form = $this->getForm($data);
         $form->handleRequest($request);
+
+        $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
+        $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
+        $this->outputParameter['form'] = $form->createView();
+        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
+        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
 
         if ($request->isMethod('POST')) {
 
@@ -232,10 +226,6 @@ abstract class CrudController extends AbstractController
                 $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
             }
         }
-
-        $this->outputParameter['form'] = $form->createView();
-        $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
-        $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
 
         return $this->render($template, $this->outputParameter);
     }
@@ -296,17 +286,6 @@ abstract class CrudController extends AbstractController
     }
 
     /**
-     * @param string $formClass
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
-     */
-    public function setFormClass($formClass)
-    {
-        $this->formClass = $formClass;
-
-        return $this;
-    }
-
-    /**
      * @param boolean $normalizeFilter
      * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
      */
@@ -326,20 +305,6 @@ abstract class CrudController extends AbstractController
         $this->gridFields = $fields;
 
         return $this;
-    }
-
-    protected function getForm($data = null)
-    {
-        try {
-            $formObject = $this->container->get($this->formClass);
-        } catch (\Exception $ex) {
-            $formObject = new $this->formClass();
-        }
-
-        $form = $this->createForm($formObject);
-        $form->setData($data);
-
-        return $form;
     }
 
     /**
