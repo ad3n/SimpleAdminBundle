@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
+use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 abstract class CrudController extends AbstractController
@@ -98,6 +99,7 @@ abstract class CrudController extends AbstractController
             'page_title' => 'Show'.' '.$translator->trans($this->pageTitle, array(), $translationDomain),
             'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
             'back' => $request->headers->get('referer'),
+            'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
         ));
     }
 
@@ -108,9 +110,21 @@ abstract class CrudController extends AbstractController
     public function deleteAction(Request $request, $id)
     {
         $this->isAllowedOr404Error('delete');
-
         $entity = $this->findOr404Error($id);
         $entityManager = $this->getDoctrine()->getManager();
+
+        $event = new PreDeleteEvent();
+        $event->setEntity($entity);
+        $event->setEntityMeneger($entityManager);
+
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::PRE_DELETE_EVENT, $event);
+
+        if ($event->getResponse()) {
+
+            return $event->getResponse();
+        }
+
         $entityManager->remove($entity);
         $entityManager->flush();
 

@@ -15,6 +15,7 @@ message:
     password_must_match: "Password Harus Sama"
     access_denied: "Anda tidak boleh mengakses halaman ini"
     old_password_invalid: "Password lama yang Anda masukkan salah"
+    cant_delete_your_self: "Anda tidak dapat menghapus data Anda sendiri"
 
 action:
     login: "Masuk"

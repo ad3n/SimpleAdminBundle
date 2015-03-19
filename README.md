@@ -1,5 +1,7 @@
 #IhsanSimpleAdminBundle#
 
+**README IS NOT UP TO DATE**
+
 <img src="SimpleAdminBundle.png" alt="IhsanSimpleBundle makes it easy for you to create a simple backed using Symfony" title="IhsanSimpleBundle" align="right" />
 
 IhsanSimpleBundle makes it easy for you to create a simple backed using Symfony

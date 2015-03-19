@@ -61,7 +61,7 @@
                     <h4 class="modal-title">{{ 'message.info' | trans({}, 'IhsanSimpleAdminBundle') }}</h4>
                 </div>
                 <div class="modal-body">
-                    <h4>{{ 'message.delete_confirmation' | trans({}, 'IhsanSimpleAdminBundle') }}</h4>
+                    <h4 class="response-message">{{ 'message.delete_confirmation' | trans({}, 'IhsanSimpleAdminBundle') }}</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">{{ 'action.close' | trans({}, 'IhsanSimpleAdminBundle') }}</button>
@@ -104,6 +104,12 @@
                             url.push('list');
 
                             window.location = url.join('/');
+                        } else {
+                            jQuery('.response-message').html(response.message);
+                            jQuery('.delete-action').remove();
+                            jQuery('.delete-modal').modal({
+                                backdrop: 'static'
+                            });
                         }
                     }
                 });

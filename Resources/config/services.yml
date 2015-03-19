@@ -11,12 +11,21 @@ services:
         tags:
            - { name: assetic.filter, alias: css_compressor }
 
-    ihsan.simple_admin.crud_annotation_reader:
+    ihsan.simple_admin.annotation:
         class: Ihsan\SimpleAdminBundle\EventListener\AnnotationListener
         arguments:
             - @annotation_reader
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
+
+    ihsan.simple_admin.delete_user:
+        class: Ihsan\SimpleAdminBundle\EventListener\DeleteUserListener
+        arguments:
+            - @service_container
+            - @security.token_storage
+            - @translator
+        tags:
+            - { name: "kernel.event_listener", event: "ihsan.simple_admin.pre_delete_event", method: "onDeleteUser" }
 
     ihsan.simple_admin.user_controller_dependency_pass:
         class: Ihsan\SimpleAdminBundle\Compiler\UserControllerDependencyPass
