@@ -9,4 +9,6 @@ namespace Ihsan\SimpleAdminBundle\Model;
 interface UserInterface extends EntityInterface
 {
     public function getAvatar();
+
+    public function getFullName();
 }

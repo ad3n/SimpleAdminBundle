@@ -23,13 +23,42 @@ class User extends BaseUser implements UserInterface
      */
     protected $id;
 
+    /**
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     */
+    protected $avatar;
+
+    /**
+     * @ORM\Column(name="full_name", type="string", length=77, nullable=true)
+     */
+    protected $fullName;
+
     public function __construct()
     {
         parent::__construct();
     }
 
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
     public function getAvatar()
     {
-        return ;
+        return $this->avatar;
+    }
+
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
     }
 }
