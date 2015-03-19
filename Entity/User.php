@@ -8,13 +8,13 @@ namespace Ihsan\SimpleAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
-use Ihsan\SimpleAdminBundle\Entity\EntityInterface;
+use Ihsan\SimpleAdminBundle\Model\UserInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ihsan_simple_admin_user")
  */
-class User extends BaseUser implements EntityInterface
+class User extends BaseUser implements UserInterface
 {
     /**
      * @ORM\Id
@@ -26,5 +26,10 @@ class User extends BaseUser implements EntityInterface
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function getAvatar()
+    {
+        return ;
     }
 }
