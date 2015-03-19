@@ -423,8 +423,8 @@ ihsan_simple_admin:
 - Improvement translation
 - Grid Action (done)
 - Add UserController Route is Optional (done)
-- Filter List Result Event
-- Add more features
+- Filter List Result Event (done)
+- Add Test
 
 ####Resources We Use####
 - https://github.com/almasaeed2010/AdminLTE

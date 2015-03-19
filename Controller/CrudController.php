@@ -14,8 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Ihsan\SimpleAdminBundle\Event\PostFlushCrudEvent;
-use Ihsan\SimpleAdminBundle\Event\PrePersistCrudEvent;
+use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
+use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
+use Ihsan\SimpleAdminBundle\Event\BeforeShowEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 abstract class CrudController extends Controller
@@ -43,6 +44,8 @@ abstract class CrudController extends Controller
     protected $showActionTemplate = 'IhsanSimpleAdminBundle:Crud:show.html.twig';
 
     protected $listActionTemplate = 'IhsanSimpleAdminBundle:Crud:list.html.twig';
+
+    const ENTITY_ALIAS = 'o';
 
     /**
      * @Route("/new/")
@@ -98,6 +101,12 @@ abstract class CrudController extends Controller
             }
         }
 
+        $event = new BeforeShowEvent();
+        $event->setViewData($data);
+
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::BEFORE_SHOW_EVENT, $event);
+
         $translator = $this->container->get('translator');
         $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
 
@@ -136,13 +145,21 @@ abstract class CrudController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($this->entityClass);
 
-        $qb = $repo->createQueryBuilder('o')->select('o')->addOrderBy(sprintf('o.%s', $this->container->getParameter('ihsan.simple_admin.identifier')), 'DESC');
+        $qb = $repo->createQueryBuilder(self::ENTITY_ALIAS)->select(self::ENTITY_ALIAS)->addOrderBy(sprintf('%s.%s', self::ENTITY_ALIAS, $this->container->getParameter('ihsan.simple_admin.identifier')), 'DESC');
         $filter = $this->normalizeFilter ? strtoupper($request->query->get('filter')) : $request->query->get('filter');
 
         if ($filter) {
-            $qb->andWhere(sprintf('o.%s LIKE :filter', $this->container->getParameter('ihsan.simple_admin.filter')));
+            $qb->andWhere(sprintf('%s.%s LIKE :filter', self::ENTITY_ALIAS, $this->container->getParameter('ihsan.simple_admin.filter')));
             $qb->setParameter('filter', strtr('%filter%', array('filter' => $filter)));
         }
+
+        $event = new FilterListEvent();
+        $event->setQueryBuilder($qb);
+        $event->setEntityAlias(self::ENTITY_ALIAS);
+        $event->setEntityClass($this->entityClass);
+
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::FILTER_LIST_EVENT, $event);
 
         $page = $request->query->get('page', 1);
         $paginator  = $this->container->get('knp_paginator');
@@ -213,20 +230,14 @@ abstract class CrudController extends Controller
                 $entityManager = $this->getDoctrine()->getManager();
                 $dispatcher = $this->container->get('event_dispatcher');
 
-                $postFlushEvent = new PostFlushCrudEvent();
-                $postFlushEvent->setEntityMeneger($entityManager);
-                $postFlushEvent->setEntity($entity);
-
-                $prePersistEvent = new PrePersistCrudEvent();
-                $prePersistEvent->setEntityMeneger($entityManager);
-                $prePersistEvent->setEntity($entity);
-
-                $dispatcher->dispatch(Event::PRE_PERSIST_EVENT, $prePersistEvent);
+                $event = new PostSaveEvent();
+                $event->setEntityMeneger($entityManager);
+                $event->setEntity($entity);
 
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
-                $dispatcher->dispatch(Event::POST_FLUSH_EVENT, $postFlushEvent);
+                $dispatcher->dispatch(Event::POST_SAVE_EVENT, $event);
 
                 $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
             }

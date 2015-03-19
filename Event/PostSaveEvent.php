@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ihsan\SimpleAdminBundle\Entity\EntityInterface;
 
-class PrePersistCrudEvent extends Event
+class PostSaveEvent extends Event
 {
     protected $entity;
 
@@ -34,6 +34,9 @@ class PrePersistCrudEvent extends Event
         $this->entity = $entity;
     }
 
+    /**
+     * @return EntityInterface
+     */
     public function getEntity()
     {
         return $this->entity;

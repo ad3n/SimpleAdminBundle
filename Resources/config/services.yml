@@ -39,10 +39,10 @@ services:
 
     ihsan.simple_admin.main_menu:
         class: Knp\Menu\MenuItem
-        factory_service: app.menu
+        factory_service: ihsan.simple_admin.menu
         factory_method: mainMenu
         arguments:
             - @knp_menu.factory
             - []
         tags:
-            - { name: knp_menu.menu, alias: ihsan_simple_admin_main }
+            - { name: knp_menu.menu, alias: ihsan_simple_admin_main_menu }

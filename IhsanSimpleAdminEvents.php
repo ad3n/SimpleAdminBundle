@@ -7,7 +7,9 @@ namespace Ihsan\SimpleAdminBundle;
  */
 class IhsanSimpleAdminEvents
 {
-    const PRE_PERSIST_EVENT = 'ihsan.simple_admin.pre_persist_event';
+    const POST_SAVE_EVENT = 'ihsan.simple_admin.post_save_event';
 
-    const POST_FLUSH_EVENT = 'ihsan.simple_admin.post_flush_event';
+    const FILTER_LIST_EVENT = 'ihsan.simple_admin.filter_list_event';
+
+    const BEFORE_SHOW_EVENT = 'ihsan.simple_admin.before_show_event';
 }
