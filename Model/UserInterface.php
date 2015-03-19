@@ -11,4 +11,6 @@ interface UserInterface extends EntityInterface
     public function getAvatar();
 
     public function getFullName();
+
+    public function getRole();
 }

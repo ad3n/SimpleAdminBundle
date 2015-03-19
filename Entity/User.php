@@ -61,4 +61,11 @@ class User extends BaseUser implements UserInterface
     {
         return $this->fullName;
     }
+
+    public function getRole()
+    {
+        $roles = $this->getRoles();
+
+        return str_replace(array('ROLE_', '_'), array('', ' '), $roles[0]);
+    }
 }
