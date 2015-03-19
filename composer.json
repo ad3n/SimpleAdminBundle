@@ -17,7 +17,6 @@
         "twig/twig": "~1.18",
         "knplabs/knp-paginator-bundle": "~2.4",
         "knplabs/knp-menu-bundle": "~2",
-        "fkr/cssurlrewrite-bundle": "~1.0",
         "friendsofsymfony/user-bundle": "2.0.x-dev",
         "ihsanudin/compressor": "dev-master"
     },

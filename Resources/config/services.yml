@@ -68,3 +68,9 @@ services:
         class: Ihsan\SimpleAdminBundle\Form\ChangePasswordType
         arguments:
             - @service_container
+
+    ihsan.simple_admin.user_form:
+        class: Ihsan\SimpleAdminBundle\Form\UserType
+        arguments:
+            - @service_container
+            - %security.role_hierarchy.roles%

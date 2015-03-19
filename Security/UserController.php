@@ -21,8 +21,6 @@ use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
  *
  * @PageTitle("page.user.title")
  * @PageDescription("page.user.description")
- * @GridFields({"username", "fullName", "email", "roles"})
- * @ShowFields({"username", "fullName", "email", "roles"})
  */
 class UserController extends CrudController
 {

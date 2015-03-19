@@ -41,5 +41,7 @@ final class UserControllerDependencyPass
 
         $controller->setFormClass($this->container->getParameter('ihsan.simple_admin.security.user_form'));
         $controller->setEntityClass($this->container->getParameter('ihsan.simple_admin.security.user_entity'));
+        $controller->setShowFields($this->container->getParameter('ihsan.simple_admin.security.show_fields'));
+        $controller->setGridFields($this->container->getParameter('ihsan.simple_admin.security.grid_fields'));
     }
 }
