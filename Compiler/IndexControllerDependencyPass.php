@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleAdminBundle\EventListener;
+namespace Ihsan\SimpleAdminBundle\Compiler;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -9,9 +9,9 @@ namespace Ihsan\SimpleAdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Ihsan\SimpleAdminBundle\Security\UserController;
+use Ihsan\SimpleAdminBundle\Controller\IndexController;
 
-final class UserControllerDependencyPassListener
+final class IndexControllerDependencyPass
 {
     /**
      * @var ContainerInterface
@@ -34,12 +34,11 @@ final class UserControllerDependencyPassListener
 
         $controller = $controller[0];
 
-        if (! $controller instanceof UserController) {
+        if (! $controller instanceof IndexController) {
 
             return;
         }
 
-        $controller->setFormClass($this->container->getParameter('ihsan.simple_admin.security.user_form'));
-        $controller->setEntityClass($this->container->getParameter('ihsan.simple_admin.security.user_entity'));
+        $controller->setShowFields($this->container->getParameter('ihsan.simple_admin.profile_fields'));
     }
 }

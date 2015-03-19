@@ -19,14 +19,21 @@ services:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.user_controller_dependency_pass:
-        class: Ihsan\SimpleAdminBundle\EventListener\UserControllerDependencyPassListener
+        class: Ihsan\SimpleAdminBundle\Compiler\UserControllerDependencyPass
+        arguments:
+            - @service_container
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
+
+    ihsan.simple_admin.index_controller_dependency_pass:
+        class: Ihsan\SimpleAdminBundle\Compiler\IndexControllerDependencyPass
         arguments:
             - @service_container
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.twig_global_variable_pass:
-        class: Ihsan\SimpleAdminBundle\EventListener\TwigGlobaVariablePassListener
+        class: Ihsan\SimpleAdminBundle\Compiler\TwigGlobaVariablePass
         arguments:
             - @service_container
         tags:
@@ -36,6 +43,7 @@ services:
         class: Ihsan\SimpleAdminBundle\Menu\Builder
         arguments:
             - @router
+            - @service_container
 
     ihsan.simple_admin.main_menu:
         class: Knp\Menu\MenuItem

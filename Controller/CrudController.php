@@ -6,7 +6,6 @@ namespace Ihsan\SimpleAdminBundle\Controller;
  * Url: http://blog.khodam.org
  */
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -19,23 +18,15 @@ use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
 use Ihsan\SimpleAdminBundle\Event\BeforeShowEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
-abstract class CrudController extends Controller
+abstract class CrudController extends AbstractController
 {
-    protected $pageTitle = 'IhsanSimpleAdminBundle';
-
-    protected $pageDescription = 'Provide Admin Generator with KISS Principle';
-
     protected $outputParameter = array();
 
     protected $normalizeFilter = false;
 
-    protected $entityClass;
+    protected $gridFields = array();
 
     protected $formClass;
-
-    protected $showFields = array();
-
-    protected $gridFields = array();
 
     protected $newActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
@@ -116,7 +107,6 @@ abstract class CrudController extends Controller
             'page_title' => 'Show'.' '.$translator->trans($this->pageTitle, array(), $translationDomain),
             'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
             'back' => $request->headers->get('referer'),
-            'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
         ));
     }
 
@@ -276,29 +266,6 @@ abstract class CrudController extends Controller
         return true;
     }
 
-    protected function entityProperties()
-    {
-        $fields = array();
-        $reflection = new \ReflectionClass($this->entityClass);
-        $reflection->getProperties();
-
-        foreach ($reflection->getProperties() as $key => $property) {
-            $fields[$key] = $property->getName();
-        }
-
-        return $fields;
-    }
-
-    protected function showFields()
-    {
-        if (! empty($this->showFields)) {
-
-            return $this->showFields;
-        }
-
-        return $this->entityProperties();
-    }
-
     protected function gridFields()
     {
         if (! empty($this->gridFields)) {
@@ -346,39 +313,6 @@ abstract class CrudController extends Controller
     public function normalizeFilter($normalizeFilter = true)
     {
         $this->normalizeFilter = $normalizeFilter;
-
-        return $this;
-    }
-
-    /**
-     * @param string $pageTitle
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
-     */
-    public function setPageTitle($pageTitle)
-    {
-        $this->pageTitle = $pageTitle;
-
-        return $this;
-    }
-
-    /**
-     * @param string $pageDescription
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
-     */
-    public function setPageDescription($pageDescription)
-    {
-        $this->pageDescription = $pageDescription;
-
-        return $this;
-    }
-
-    /**
-     * @param array $fields
-     * @return \Ihsan\SimpleAdminBundle\Controller\CrudController
-     */
-    public function setShowFields(array $fields)
-    {
-        $this->showFields = $fields;
 
         return $this;
     }

@@ -28,6 +28,19 @@ link:
     logout: "Logout"
     profile: "Profil"
 
-user:
-    page_title: "User Management"
-    page_description: "Tambah, Lihat, Ubah dan Hapus User"
+page:
+    user:
+        title: 'User Management'
+        description: 'Tambah, Lihat, Ubah dan Hapus User'
+    profile:
+        title: 'Profil Anda'
+        description: ''
+
+menu:
+    dashboard: 'Home'
+    profile: 'Profil'
+    user:
+        title: 'User Management'
+        change_password: 'Ubah Password'
+        add: 'Tambah User'
+        list: 'Daftar User'

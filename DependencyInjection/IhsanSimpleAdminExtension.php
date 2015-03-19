@@ -17,11 +17,13 @@ class IhsanSimpleAdminExtension extends Extension
         $container->setParameter('ihsan.simple_admin.app_title', $config['app_title']);
         $container->setParameter('ihsan.simple_admin.per_page', $config['per_page']);
         $container->setParameter('ihsan.simple_admin.menu', $config['menu']);
+        $container->setParameter('ihsan.simple_admin.profile_fields', $config['profile_fields']);
         $container->setParameter('ihsan.simple_admin.identifier', $config['identifier']);
         $container->setParameter('ihsan.simple_admin.filter', $config['filter']);
         $container->setParameter('ihsan.simple_admin.date_time_format', $config['date_time_format']);
         $container->setParameter('ihsan.simple_admin.translation_domain', $config['translation_domain']);
         $container->setParameter('ihsan.simple_admin.themes.dashboard', $config['themes']['dashboard']);
+        $container->setParameter('ihsan.simple_admin.themes.profile', $config['themes']['profile']);
         $container->setParameter('ihsan.simple_admin.themes.form_theme', $config['themes']['form_theme']);
         $container->setParameter('ihsan.simple_admin.themes.pagination', $config['themes']['pagination']);
         $container->setParameter('ihsan.simple_admin.security.user_form', $config['security']['user']['form_class']);

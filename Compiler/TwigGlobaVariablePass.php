@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleAdminBundle\EventListener;
+namespace Ihsan\SimpleAdminBundle\Compiler;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -9,7 +9,7 @@ namespace Ihsan\SimpleAdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-final class TwigGlobaVariablePassListener
+final class TwigGlobaVariablePass
 {
     /**
      * @var ContainerInterface

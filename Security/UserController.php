@@ -19,8 +19,8 @@ use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
 /**
  * @Route("/user")
  *
- * @PageTitle("user.page_title")
- * @PageDescription("user.page_description")
+ * @PageTitle("page.user.title")
+ * @PageDescription("page.user.description")
  * @GridFields({"username", "fullName", "email", "roles"})
  * @ShowFields({"username", "fullName", "email", "roles"})
  */
