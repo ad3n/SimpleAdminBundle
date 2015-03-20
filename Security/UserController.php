@@ -9,12 +9,9 @@ namespace Ihsan\SimpleAdminBundle\Security;
 use Ihsan\SimpleAdminBundle\Controller\CrudController;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Ihsan\SimpleAdminBundle\Annotation\PageTitle;
 use Ihsan\SimpleAdminBundle\Annotation\PageDescription;
-use Ihsan\SimpleAdminBundle\Annotation\GridFields;
-use Ihsan\SimpleAdminBundle\Annotation\ShowFields;
 
 /**
  * @Route("/user")

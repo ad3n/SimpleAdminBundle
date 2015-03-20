@@ -7,6 +7,8 @@ namespace Ihsan\SimpleAdminBundle;
  */
 class IhsanSimpleAdminEvents
 {
+    const PRE_FORM_CREATE_EVENT = 'ihsan.simple_admin.pre_form_create_event';
+
     const PRE_FORM_VALIDATION_EVENT = 'ihsan.simple_admin.pre_form_validation_event';
 
     const PRE_SAVE_EVENT = 'ihsan.simple_admin.pre_save_event';

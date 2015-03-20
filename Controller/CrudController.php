@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Ihsan\SimpleAdminBundle\Event\PreFormCreateEvent;
 use Ihsan\SimpleAdminBundle\Event\PreFormValidationEvent;
 use Ihsan\SimpleAdminBundle\Event\PreSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
@@ -20,7 +21,7 @@ use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
 use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
-abstract class CrudController extends AbstractController
+abstract class CrudController extends AbstractController implements OverridableTemplateInterface
 {
     protected $outputParameter = array();
 
@@ -28,13 +29,13 @@ abstract class CrudController extends AbstractController
 
     protected $gridFields = array();
 
-    protected $newActionTemplate;
+    protected $newActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
-    protected $editActionTemplate;
+    protected $editActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
 
-    protected $showActionTemplate;
+    protected $showActionTemplate = 'IhsanSimpleAdminBundle:Crud:show.html.twig';
 
-    protected $listActionTemplate;
+    protected $listActionTemplate = 'IhsanSimpleAdminBundle:Crud:list.html.twig';
 
     const ENTITY_ALIAS = 'o';
 
@@ -44,9 +45,18 @@ abstract class CrudController extends AbstractController
      */
     public function newAction(Request $request)
     {
-        $entity = $this->entityClass;
+        $event = new PreFormCreateEvent();
 
-        return $this->handle($request, new $entity(), $this->newActionTemplate, 'new');
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
+
+        $entity = $event->getFormData();
+
+        if (! $entity) {
+            $entity = new $this->entityClass();
+        }
+
+        return $this->handle($request, $entity, $this->newActionTemplate, 'new');
     }
 
     /**
@@ -57,7 +67,18 @@ abstract class CrudController extends AbstractController
     {
         $this->isAllowedOr404Error('edit');
 
-        return $this->handle($request, $this->findOr404Error($id), $this->editActionTemplate, 'edit');
+        $event = new PreFormCreateEvent();
+
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
+
+        $entity = $event->getFormData();
+
+        if (! $entity) {
+            $entity = $this->findOr404Error($id);
+        }
+
+        return $this->handle($request, $entity, $this->editActionTemplate, 'edit');
     }
 
     /**
@@ -266,7 +287,7 @@ abstract class CrudController extends AbstractController
         $entity = $this->getDoctrine()->getManager()->getRepository($this->entityClass)->find($id);
 
         if (! $entity) {
-            throw new NotFoundHttpException($translator->trans('message.data_not_found', array('%id%', $id), $translationDomain));
+            throw new NotFoundHttpException($translator->trans('message.data_not_found', array('%id%' => $id), $translationDomain));
         }
 
         return $entity;
@@ -377,5 +398,13 @@ abstract class CrudController extends AbstractController
         $this->listActionTemplate = $template;
 
         return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function allowOverrideTemplate()
+    {
+        return true;
     }
 }

@@ -28,6 +28,7 @@ action:
     show: 'Detail'
     edit: 'Edit'
     delete: 'Hapus'
+    submit: 'Simpan'
 
 link:
     home: 'Dashboard'

@@ -126,6 +126,6 @@ class IndexController extends AbstractController
             }
         }
 
-        return $this->render('IhsanSimpleAdminBundle:Index:change_password.html.twig', $this->outputParameter);
+        return $this->render($this->container->getParameter('ihsan.simple_admin.themes.change_password'), $this->outputParameter);
     }
 }

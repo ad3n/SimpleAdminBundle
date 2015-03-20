@@ -50,7 +50,7 @@ class ChangePasswordType extends AbstractType
                 ),
             ))
             ->add('save', 'submit', array(
-                'label' => 'Save',
+                'label' => 'action.submit',
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 )

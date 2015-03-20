@@ -21,6 +21,8 @@ services:
     ihsan.simple_admin.db_util:
         class: Ihsan\SimpleAdminBundle\EventListener\DbUtilListener
         arguments:
+            - @kernel
+            - @service_container
             - @doctrine.orm.entity_manager
         tags:
             - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }
@@ -33,6 +35,13 @@ services:
             - @translator
         tags:
             - { name: "kernel.event_listener", event: "ihsan.simple_admin.pre_delete_event", method: "onDeleteUser" }
+
+    ihsan.simple_admin.controller_default_view_pass:
+        class: Ihsan\SimpleAdminBundle\Compiler\ControllerDefaultViewPass
+        arguments:
+            - @service_container
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.user_controller_dependency_pass:
         class: Ihsan\SimpleAdminBundle\Compiler\UserControllerDependencyPass

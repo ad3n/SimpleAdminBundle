@@ -9,9 +9,9 @@ namespace Ihsan\SimpleAdminBundle\Compiler;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Ihsan\SimpleAdminBundle\Controller\CrudController;
+use Ihsan\SimpleAdminBundle\Controller\OverridableTemplateInterface;
 
-final class ControllerDefaultValuePass
+final class ControllerDefaultViewPass
 {
     /**
      * @var ContainerInterface
@@ -34,9 +34,18 @@ final class ControllerDefaultValuePass
 
         $controller = $controller[0];
 
-        if (! $controller instanceof CrudController) {
+        if (! $controller instanceof OverridableTemplateInterface) {
 
             return;
         }
+
+        if (! $controller->allowOverrideTemplate()) {
+            return;
+        }
+
+        $controller->setNewActionTemplate($this->container->getParameter('ihsan.simple_admin.themes.new_view'));
+        $controller->setEditActionTemplate($this->container->getParameter('ihsan.simple_admin.themes.edit_view'));
+        $controller->setShowActioinTemplate($this->container->getParameter('ihsan.simple_admin.themes.show_view'));
+        $controller->setListActionTemplate($this->container->getParameter('ihsan.simple_admin.themes.list_view'));
     }
 }

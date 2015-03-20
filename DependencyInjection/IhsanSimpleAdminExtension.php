@@ -24,7 +24,12 @@ class IhsanSimpleAdminExtension extends Extension
         $container->setParameter('ihsan.simple_admin.translation_domain', $config['translation_domain']);
         $container->setParameter('ihsan.simple_admin.themes.dashboard', $config['themes']['dashboard']);
         $container->setParameter('ihsan.simple_admin.themes.profile', $config['themes']['profile']);
+        $container->setParameter('ihsan.simple_admin.themes.change_password', $config['themes']['change_password']);
         $container->setParameter('ihsan.simple_admin.themes.form_theme', $config['themes']['form_theme']);
+        $container->setParameter('ihsan.simple_admin.themes.new_view', $config['themes']['new_view']);
+        $container->setParameter('ihsan.simple_admin.themes.edit_view', $config['themes']['edit_view']);
+        $container->setParameter('ihsan.simple_admin.themes.show_view', $config['themes']['show_view']);
+        $container->setParameter('ihsan.simple_admin.themes.list_view', $config['themes']['list_view']);
         $container->setParameter('ihsan.simple_admin.themes.pagination', $config['themes']['pagination']);
         $container->setParameter('ihsan.simple_admin.security.user_form', $config['security']['user']['form_class']);
         $container->setParameter('ihsan.simple_admin.security.user_entity', $config['security']['user']['entity_class']);
