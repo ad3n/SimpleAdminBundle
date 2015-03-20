@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+use Ihsan\SimpleAdminBundle\Event\PreFormValidationEvent;
+use Ihsan\SimpleAdminBundle\Event\PreSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
 use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
@@ -26,13 +28,13 @@ abstract class CrudController extends AbstractController
 
     protected $gridFields = array();
 
-    protected $newActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
+    protected $newActionTemplate;
 
-    protected $editActionTemplate = 'IhsanSimpleAdminBundle:Crud:new.html.twig';
+    protected $editActionTemplate;
 
-    protected $showActionTemplate = 'IhsanSimpleAdminBundle:Crud:show.html.twig';
+    protected $showActionTemplate;
 
-    protected $listActionTemplate = 'IhsanSimpleAdminBundle:Crud:list.html.twig';
+    protected $listActionTemplate;
 
     const ENTITY_ALIAS = 'o';
 
@@ -218,7 +220,13 @@ abstract class CrudController extends AbstractController
         $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
         $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
 
+        $dispatcher = $this->container->get('event_dispatcher');
+
         if ($request->isMethod('POST')) {
+            $preFormValidationEvent = new PreFormValidationEvent();
+            $preFormValidationEvent->setRequest($request);
+
+            $dispatcher->dispatch(Event::PRE_FORM_VALIDATION_EVENT, $preFormValidationEvent);
 
             if (! $form->isValid()) {
 
@@ -226,16 +234,22 @@ abstract class CrudController extends AbstractController
             } else if ($form->isValid()) {
                 $entity = $form->getData();
                 $entityManager = $this->getDoctrine()->getManager();
-                $dispatcher = $this->container->get('event_dispatcher');
 
-                $event = new PostSaveEvent();
-                $event->setEntityMeneger($entityManager);
-                $event->setEntity($entity);
+                $preSaveEvent = new PreSaveEvent();
+                $preSaveEvent->setRequest($request);
+                $preSaveEvent->setEntity($entity);
+                $preSaveEvent->setEntityMeneger($entityManager);
+
+                $postSaveEvent = new PostSaveEvent();
+                $postSaveEvent->setEntityMeneger($entityManager);
+                $postSaveEvent->setEntity($entity);
+
+                $dispatcher->dispatch(Event::PRE_SAVE_EVENT, $preSaveEvent);
 
                 $entityManager->persist($entity);
                 $entityManager->flush();
 
-                $dispatcher->dispatch(Event::POST_SAVE_EVENT, $event);
+                $dispatcher->dispatch(Event::POST_SAVE_EVENT, $postSaveEvent);
 
                 $this->outputParameter['success'] = $translator->trans('message.data_saved', array(), $translationDomain);
             }

@@ -1,6 +1,6 @@
 #IhsanSimpleAdminBundle#
 
-**README IS NOT UP TO DATE**
+**THIS DOCUMENT IS NOT UP TO DATE**
 
 <img src="SimpleAdminBundle.png" alt="IhsanSimpleBundle makes it easy for you to create a simple backed using Symfony" title="IhsanSimpleBundle" align="right" />
 
@@ -424,6 +424,7 @@ ihsan_simple_admin:
 ####TODO####
 - Improvement translation
 - Grid Action (done)
+- Add PreSaveEvent
 - Add UserController Route is Optional (done)
 - Filter List Result Event (done)
 - Add Test

@@ -9,13 +9,16 @@ namespace Ihsan\SimpleAdminBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ihsan\SimpleAdminBundle\Model\EntityInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class PreDeleteEvent extends Event
+class PreSaveEvent extends Event
 {
     protected $entity;
 
     protected $entityManager;
+
+    protected $request;
 
     protected $response;
 
@@ -45,15 +48,26 @@ class PreDeleteEvent extends Event
         return $this->entity;
     }
 
-    public function setResponse(JsonResponse $response)
+    public function setRequest(Request $request)
     {
-        $this->response = $response;
-
-        return $this;
+        $this->request = $request;
     }
 
     /**
-     * @return JsonResponse
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+    }
+
+    /**
+     * @return Response
      */
     public function getResponse()
     {

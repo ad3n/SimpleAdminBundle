@@ -8,7 +8,7 @@ namespace Ihsan\SimpleAdminBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ihsan\SimpleAdminBundle\Entity\EntityInterface;
+use Ihsan\SimpleAdminBundle\Model\EntityInterface;
 
 class PostSaveEvent extends Event
 {
