@@ -18,6 +18,13 @@ services:
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
+    ihsan.simple_admin.db_util:
+        class: Ihsan\SimpleAdminBundle\EventListener\DbUtilListener
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: "kernel.event_listener", event: "kernel.request", method: "onKernelRequest" }
+
     ihsan.simple_admin.delete_user:
         class: Ihsan\SimpleAdminBundle\EventListener\DeleteUserListener
         arguments:

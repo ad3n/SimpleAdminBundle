@@ -110,6 +110,15 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
+                ->arrayNode('db_util')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('tables')
+                            ->defaultValue(array('ihsan_simple_admin_user'))
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
