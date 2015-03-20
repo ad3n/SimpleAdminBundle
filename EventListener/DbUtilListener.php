@@ -49,7 +49,7 @@ final class DbUtilListener
 
         $criteria = $request->query->all();
         $entityAlias = $request->query->get('ihsan_db_util');
-        $entities = $this->container->getParameter('ihsan.simple_admin.db_util.entity');
+        $entities = $this->container->getParameter('ihsan.simple_admin.db_util.entities');
         unset($criteria['ihsan_db_util']);
         $translator = $this->container->get('translator');
 
@@ -71,7 +71,7 @@ final class DbUtilListener
             $this->objectManager->flush();
 
             $response = new Response();
-            $response->setContent($translator->trans('message.data_deleted', array(json_encode($criteria))));
+            $response->setContent($translator->trans('message.data_deleted', array('%data%' => json_encode($criteria))));
 
             $event->setResponse($response);
         } catch (Exception $ex) {

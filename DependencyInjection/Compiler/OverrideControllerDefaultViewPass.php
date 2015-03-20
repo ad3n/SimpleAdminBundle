@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleAdminBundle\Compiler;
+namespace Ihsan\SimpleAdminBundle\DependencyInjection\Compiler;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>
@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Ihsan\SimpleAdminBundle\Controller\OverridableTemplateInterface;
 
-final class ControllerDefaultViewPass
+final class OverrideControllerDefaultViewPass
 {
     /**
      * @var ContainerInterface

@@ -17,6 +17,7 @@ message:
     old_password_invalid: 'Password lama yang Anda masukkan salah'
     cant_delete_your_self: 'Anda tidak dapat menghapus data Anda sendiri'
     select_empty: '---Pilih Salah Satu---'
+    data_deleted: '%data% berhasil dihapus'
 
 action:
     login: 'Masuk'

@@ -7,8 +7,9 @@ namespace Ihsan\SimpleAdminBundle\Event;
  */
 
 use Ihsan\SimpleAdminBundle\Model\EntityInterface;
+use Symfony\Component\EventDispatcher\Event;
 
-class PreFormCreateEvent
+class PreFormCreateEvent extends Event
 {
     protected $data;
 

@@ -37,28 +37,28 @@ services:
             - { name: "kernel.event_listener", event: "ihsan.simple_admin.pre_delete_event", method: "onDeleteUser" }
 
     ihsan.simple_admin.controller_default_view_pass:
-        class: Ihsan\SimpleAdminBundle\Compiler\ControllerDefaultViewPass
+        class: Ihsan\SimpleAdminBundle\DependencyInjection\Compiler\OverrideControllerDefaultViewPass
         arguments:
             - @service_container
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.user_controller_dependency_pass:
-        class: Ihsan\SimpleAdminBundle\Compiler\UserControllerDependencyPass
+        class: Ihsan\SimpleAdminBundle\DependencyInjection\Compiler\UserControllerDependencyPass
         arguments:
             - @service_container
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.index_controller_dependency_pass:
-        class: Ihsan\SimpleAdminBundle\Compiler\IndexControllerDependencyPass
+        class: Ihsan\SimpleAdminBundle\DependencyInjection\Compiler\IndexControllerDependencyPass
         arguments:
             - @service_container
         tags:
             - { name: "kernel.event_listener", event: "kernel.controller", method: "onKernelController" }
 
     ihsan.simple_admin.twig_global_variable_pass:
-        class: Ihsan\SimpleAdminBundle\Compiler\TwigGlobaVariablePass
+        class: Ihsan\SimpleAdminBundle\DependencyInjection\Compiler\TwigGlobaVariablePass
         arguments:
             - @service_container
         tags:

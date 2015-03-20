@@ -425,7 +425,7 @@ ihsan_simple_admin:
 - Improvement translation
 - Grid Action (done)
 - Add PreSaveEvent (done)
-- Add Utilities for FOSUserBundle (delete user using URL)
+- Add Utilities for FOSUserBundle (check: how to add parameter dynamic)
 - Add UserController Route is Optional (done)
 - Filter List Result Event (done)
 - Add Test

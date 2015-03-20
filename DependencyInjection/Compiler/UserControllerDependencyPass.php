@@ -1,5 +1,5 @@
 <?php
-namespace Ihsan\SimpleAdminBundle\Compiler;
+namespace Ihsan\SimpleAdminBundle\DependencyInjection\Compiler;
 
 /**
  * Author: Muhammad Surya Ihsanuddin<surya.kejawen@gmail.com>

@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidDefinitionException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
-class IsDependenciesPassed implements CompilerPassInterface
+class IsDependenciesPassedPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
