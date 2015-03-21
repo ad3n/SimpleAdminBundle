@@ -425,9 +425,11 @@ ihsan_simple_admin:
 - Improvement translation
 - Grid Action (done)
 - Add PreSaveEvent (done)
-- Add Utilities for FOSUserBundle (check: how to add parameter dynamic)
 - Add UserController Route is Optional (done)
 - Filter List Result Event (done)
+- Add Fixtures
+- Add Generic Form
+- Breadcumb Add
 - Add Test
 
 ####Resources We Use####

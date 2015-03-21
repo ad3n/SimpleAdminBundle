@@ -125,13 +125,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->arrayNode('db_util')
-                    ->prototype('array')
-                        ->children()
-                            ->scalarNode('entities')->end()
-                        ->end()
-                    ->end()
-                ->end()
             ->end()
         ;
 
