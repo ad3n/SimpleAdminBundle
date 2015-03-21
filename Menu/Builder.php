@@ -28,16 +28,16 @@ class Builder
     protected $translationDomain;
 
     /**
-     * @var Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface
+     * @var Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface
      */
-    protected $tokenStorage;
+    protected $authorizationChecker;
 
     public function __construct(Router $router, ContainerInterface $container)
     {
         $this->routeCollection = $router->getRouteCollection();
         $this->translator = $container->get('translator');
         $this->translationDomain = $container->getParameter('ihsan.simple_admin.translation_domain');
-        $this->tokenStorage = $container->get('security.token_storage');
+        $this->authorizationChecker = $container->get('security.authorization_checker');
     }
 
     public function mainMenu(FactoryInterface $factory, array $options)
@@ -92,9 +92,7 @@ class Builder
 
     protected function addUserMenu($menu)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
-
-        if (! in_array('ROLE_SUPER_ADMIN', $user->getRoles())) {
+        if (! $this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
             return ;
         }
 
