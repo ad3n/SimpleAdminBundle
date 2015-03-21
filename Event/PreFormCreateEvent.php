@@ -6,12 +6,27 @@ namespace Ihsan\SimpleAdminBundle\Event;
  * Url: http://blog.khodam.org
  */
 
+use Ihsan\SimpleAdminBundle\Controller\CrudController;
 use Ihsan\SimpleAdminBundle\Model\EntityInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 class PreFormCreateEvent extends Event
 {
     protected $data;
+
+    protected $controller;
+
+    public function setController(CrudController $controller)
+    {
+        $this->controller = $controller;
+
+        return $this;
+    }
+
+    public function getController()
+    {
+        return $this->controller;
+    }
 
     public function setFormData(EntityInterface $data)
     {

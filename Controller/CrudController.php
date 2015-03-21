@@ -46,6 +46,7 @@ abstract class CrudController extends AbstractController implements OverridableT
     public function newAction(Request $request)
     {
         $event = new PreFormCreateEvent();
+        $event->setController($this);
 
         $dispatcher = $this->container->get('event_dispatcher');
         $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
@@ -68,6 +69,7 @@ abstract class CrudController extends AbstractController implements OverridableT
         $this->isAllowedOr404Error('edit');
 
         $event = new PreFormCreateEvent();
+        $event->setController($this);
 
         $dispatcher = $this->container->get('event_dispatcher');
         $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
