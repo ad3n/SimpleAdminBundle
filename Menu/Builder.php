@@ -27,11 +27,17 @@ class Builder
      */
     protected $translationDomain;
 
+    /**
+     * @var Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface
+     */
+    protected $tokenStorage;
+
     public function __construct(Router $router, ContainerInterface $container)
     {
         $this->routeCollection = $router->getRouteCollection();
         $this->translator = $container->get('translator');
         $this->translationDomain = $container->getParameter('ihsan.simple_admin.translation_domain');
+        $this->tokenStorage = $container->get('security.token_storage');
     }
 
     public function mainMenu(FactoryInterface $factory, array $options)
@@ -86,6 +92,12 @@ class Builder
 
     protected function addUserMenu($menu)
     {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        if (! in_array('ROLE_SUPER_ADMIN', $user->getRoles())) {
+            return ;
+        }
+
         $menu->addChild('User', array(
             'uri' => '#',
             'label' => sprintf('<i class="fa fa-shield"></i> %s<i class="fa fa-angle-double-left pull-right"></i></a>', $this->translator->trans('menu.user.title', array(), $this->translationDomain)),
