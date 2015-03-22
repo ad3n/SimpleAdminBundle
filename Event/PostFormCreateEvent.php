@@ -11,7 +11,7 @@ use Ihsan\SimpleAdminBundle\Model\EntityInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Response;
 
-class PreFormCreateEvent extends Event
+class PostFormCreateEvent extends Event
 {
     protected $data;
 

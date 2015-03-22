@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleAdminBundle\Event\PreFormCreateEvent;
+use Ihsan\SimpleAdminBundle\Event\PostFormCreateEvent;
 use Ihsan\SimpleAdminBundle\Event\PreFormValidationEvent;
 use Ihsan\SimpleAdminBundle\Event\PreSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
@@ -51,6 +52,13 @@ abstract class CrudController extends AbstractController implements OverridableT
         $dispatcher = $this->container->get('event_dispatcher');
         $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
 
+        $response = $event->getResponse();
+
+        if ($response) {
+
+            return $response;
+        }
+
         $entity = $event->getFormData();
 
         if (! $entity) {
@@ -73,6 +81,13 @@ abstract class CrudController extends AbstractController implements OverridableT
 
         $dispatcher = $this->container->get('event_dispatcher');
         $dispatcher->dispatch(Event::PRE_FORM_CREATE_EVENT, $event);
+
+        $response = $event->getResponse();
+
+        if ($response) {
+
+            return $response;
+        }
 
         $entity = $event->getFormData();
 
@@ -236,6 +251,20 @@ abstract class CrudController extends AbstractController implements OverridableT
 
         $form = $this->getForm($data);
         $form->handleRequest($request);
+
+        $event = new PostFormCreateEvent();
+        $event->setController($this);
+        $event->setFormData($data);
+
+        $dispatcher = $this->container->get('event_dispatcher');
+        $dispatcher->dispatch(Event::POST_FORM_CREATE_EVENT, $event);
+
+        $response = $event->getResponse();
+
+        if ($response) {
+
+            return $response;
+        }
 
         $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
         $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
