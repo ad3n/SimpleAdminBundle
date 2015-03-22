@@ -427,9 +427,9 @@ ihsan_simple_admin:
 - Add PreSaveEvent (done)
 - Add UserController Route is Optional (done)
 - Filter List Result Event (done)
-- Add Fixtures
-- Add Generic Form
-- Breadcumb Add
+- Add Fixtures (in skeleton instead bundle)
+- Add Generic Form (make sure entity class)
+- Breadcumb Add?
 - Add Test
 
 ####Resources We Use####
