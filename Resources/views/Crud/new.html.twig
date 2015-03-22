@@ -63,11 +63,11 @@
                 <a href="#" class="btn btn-primary pull-right back-to-list">{{ 'action.back_to_list' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
             </div>
             <div class="box-body">
-                <form role="form" method="POST">
+                {{ form_start(form) }}
                     <div class="box-body with-border">
                         {{ form_widget(form) }}
                     </div>
-                </form>
+                {{ form_end(form) }}
             </div>
         </div>
     </div>

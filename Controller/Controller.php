@@ -8,7 +8,7 @@ namespace Ihsan\SimpleAdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-abstract class AbstractController extends Controller
+abstract class Controller extends Controller
 {
     protected $pageTitle = 'IhsanSimpleAdminBundle';
 

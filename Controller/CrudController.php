@@ -22,7 +22,7 @@ use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
 use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
-abstract class CrudController extends AbstractController implements OverridableTemplateInterface
+abstract class CrudController extends Controller implements OverridableTemplateInterface
 {
     protected $outputParameter = array();
 
@@ -248,16 +248,15 @@ abstract class CrudController extends AbstractController implements OverridableT
     {
         $translator = $this->container->get('translator');
         $translationDomain = $this->container->getParameter('ihsan.simple_admin.translation_domain');
+        $dispatcher = $this->container->get('event_dispatcher');
 
         $form = $this->getForm($data);
-        $form->handleRequest($request);
 
         $event = new PostFormCreateEvent();
         $event->setController($this);
         $event->setFormData($data);
 
-        $dispatcher = $this->container->get('event_dispatcher');
-        $dispatcher->dispatch(Event::POST_FORM_CREATE_EVENT, $event);
+        $dispatcher->dispatch(Event::PRE_FORM_SUBMIT_EVENT, $event);
 
         $response = $event->getResponse();
 
@@ -266,13 +265,13 @@ abstract class CrudController extends AbstractController implements OverridableT
             return $response;
         }
 
+        $form->handleRequest($request);
+
         $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
         $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
         $this->outputParameter['form'] = $form->createView();
         $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
         $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
-
-        $dispatcher = $this->container->get('event_dispatcher');
 
         if ($request->isMethod('POST')) {
             $preFormValidationEvent = new PreFormValidationEvent();

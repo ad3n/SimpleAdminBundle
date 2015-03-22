@@ -15,7 +15,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
-class IndexController extends AbstractController
+class IndexController extends Controller
 {
     /**
      * @Route("/", name="home")
