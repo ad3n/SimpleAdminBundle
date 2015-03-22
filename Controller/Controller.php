@@ -7,6 +7,7 @@ namespace Ihsan\SimpleAdminBundle\Controller;
  */
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
+use Ihsan\SimpleAdminBundle\Form\GenericFormType;
 
 abstract class Controller extends BaseController
 {
@@ -20,7 +21,7 @@ abstract class Controller extends BaseController
 
     protected $formClass;
 
-    protected function entityProperties()
+    public function entityProperties()
     {
         $fields = array();
         $reflection = new \ReflectionClass($this->entityClass);
@@ -82,6 +83,8 @@ abstract class Controller extends BaseController
             $formObject = $this->container->get($this->formClass);
         } catch (\Exception $ex) {
             $formObject = new $this->formClass();
+        } finally {
+            $formObject = new GenericFormType($this);
         }
 
         $form = $this->createForm($formObject);

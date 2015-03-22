@@ -84,7 +84,6 @@ class UserType extends AbstractType
             'data_class' => $this->container->getParameter('ihsan.simple_admin.security.user_entity'),
             'translation_domain' => $this->container->getParameter('ihsan.simple_admin.translation_domain'),
             'intention'  => self::FORM_NAME,
-
         ));
     }
 

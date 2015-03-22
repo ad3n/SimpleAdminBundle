@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Ihsan\SimpleAdminBundle\Event\PreFormCreateEvent;
-use Ihsan\SimpleAdminBundle\Event\PostFormCreateEvent;
+use Ihsan\SimpleAdminBundle\Event\PreFormSubmitEvent;
 use Ihsan\SimpleAdminBundle\Event\PreFormValidationEvent;
 use Ihsan\SimpleAdminBundle\Event\PreSaveEvent;
 use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
@@ -252,7 +252,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
 
         $form = $this->getForm($data);
 
-        $event = new PostFormCreateEvent();
+        $event = new PreFormSubmitEvent();
         $event->setController($this);
         $event->setFormData($data);
 
