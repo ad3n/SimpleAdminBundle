@@ -6,9 +6,9 @@ namespace Ihsan\SimpleAdminBundle\Controller;
  * Url: http://blog.khodam.org
  */
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
-abstract class Controller extends Controller
+abstract class Controller extends BaseController
 {
     protected $pageTitle = 'IhsanSimpleAdminBundle';
 
