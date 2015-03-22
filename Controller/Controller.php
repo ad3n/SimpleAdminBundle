@@ -82,9 +82,11 @@ abstract class Controller extends BaseController
         try {
             $formObject = $this->container->get($this->formClass);
         } catch (\Exception $ex) {
-            $formObject = new $this->formClass();
-        } finally {
-            $formObject = new GenericFormType($this, $this->container);
+            if ($this->formClass) {
+                $formObject = new $this->formClass();
+            } else {
+                $formObject = new GenericFormType($this, $this->container);
+            }
         }
 
         $form = $this->createForm($formObject);
