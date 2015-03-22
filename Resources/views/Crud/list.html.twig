@@ -1,28 +1,28 @@
-{% extends 'IhsanSimpleAdminBundle::layout.html.twig' %}
+{%- extends 'IhsanSimpleAdminBundle::layout.html.twig' -%}
 
-{% block breadcrumb %}
-    <li><a href="#" class="active">{{ page_title }}</a></li>
-{% endblock %}
+{%- block breadcrumb -%}
+    <li><a href="#" class="active">{{- page_title -}}</a></li>
+{%- endblock -%}
 
-{% block page_title %}
-    {{ page_title }}
-{% endblock %}
+{%- block page_title -%}
+    {{- page_title -}}
+{%- endblock -%}
 
-{% block page_description %}
-    {{ page_description }}
-{% endblock %}
+{%- block page_description -%}
+    {{- page_description -}}
+{%- endblock -%}
 
-{% block menu %}
-    {{ knp_menu_render(menu, { currentClass: 'active', 'allow_safe_labels': true }) }}
-{% endblock %}
+{%- block menu -%}
+    {{- knp_menu_render(menu, { currentClass: 'active', 'allow_safe_labels': true }) -}}
+{%- endblock -%}
 
-{% block content %}
+{%- block content -%}
     <div class="col-md-12 col-lg-12 col-sm-12">
         <div class="box box-success box-solid">
             <div class="box-header">
                 <form role="form">
                     <div class="input-group">
-                        <input type="text" name="filter" class="form-control" placeholder="{{ 'message.search' | trans({}, 'IhsanSimpleAdminBundle') }}">
+                        <input type="text" name="filter" class="form-control" placeholder="{{- 'message.search' | trans({}, 'IhsanSimpleAdminBundle') -}}">
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -33,68 +33,68 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <td>#</td>
-                        {% for i, value in header %}
-                            <td>{{ value | humanize}}</td>
-                        {% endfor %}
+                        {%- for i, value in header -%}
+                            <td>{{- value | humanize-}}</td>
+                        {%- endfor -%}
                     </tr>
-                    {% for key, value in record %}
+                    {%- for key, value in record -%}
                         <tr>
-                            <td>{{ key + 1 }}</td>
-                            {% for i, v in value %}
+                            <td>{{- key + 1 -}}</td>
+                            {%- for i, v in value -%}
                                 <td>
-                                {% if v.timezone is defined %}
-                                    {{ v | date(date_time_format) }}
-                                {% else %}
-                                    {% if v is iterable %}
-                                        {% set value = '' %}
-                                        {% for i, v in v %}
-                                            {% set value = value ~ v ~ ', ' %}
-                                        {% endfor %}
-                                        {{ value | trim(', ')}}
-                                    {% else %}
-                                        {{ v }}
-                                    {% endif %}
-                                {% endif %}
+                                {%- if v.timezone is defined -%}
+                                    {{- v | date(date_time_format) -}}
+                                {%- else -%}
+                                    {%- if v is iterable -%}
+                                        {%- set value = '' -%}
+                                        {%- for i, v in v -%}
+                                            {%- set value = value ~ v ~ ', ' -%}
+                                        {%- endfor -%}
+                                        {{- value | trim(', ')-}}
+                                    {%- else -%}
+                                        {{- v -}}
+                                    {%- endif -%}
+                                {%- endif -%}
                                 </td>
-                            {% endfor %}
+                            {%- endfor -%}
                             <td width="22%">
                                 <div class="btn-group" role="group">
-                                    {% for i, v in action %}
-                                        {% if v is sameas('show') %}
-                                            <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-success show">
-                                                <span class="btn-label"><i class="fa fa-share"></i></span>{{ 'action.show' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                    {%- for i, v in action -%}
+                                        {%- if v is sameas('show') -%}
+                                            <button data-record="{{- identifier[key] -}}" class="btn btn-labeled btn-success show">
+                                                <span class="btn-label"><i class="fa fa-share"></i></span>{{- 'action.show' | trans({}, 'IhsanSimpleAdminBundle') -}}
                                             </button>
-                                        {% endif %}
-                                        {% if v is sameas('edit') %}
-                                            <button data-record="{{ identifier[key] }}" class="btn btn-labeled btn-warning edit">
-                                                <span class="btn-label"><i class="fa fa-pencil"></i></span>{{ 'action.edit' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                        {%- endif -%}
+                                        {%- if v is sameas('edit') -%}
+                                            <button data-record="{{- identifier[key] -}}" class="btn btn-labeled btn-warning edit">
+                                                <span class="btn-label"><i class="fa fa-pencil"></i></span>{{- 'action.edit' | trans({}, 'IhsanSimpleAdminBundle') -}}
                                             </button>
-                                        {% endif %}
-                                        {% if v is sameas('delete') %}
-                                            <button data-record="{{ identifier[key] }}" class="delete btn btn-labeled btn-danger delete">
-                                                <span class="btn-label"><i class="fa fa-trash"></i></span>{{ 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') }}
+                                        {%- endif -%}
+                                        {%- if v is sameas('delete') -%}
+                                            <button data-record="{{- identifier[key] -}}" class="delete btn btn-labeled btn-danger delete">
+                                                <span class="btn-label"><i class="fa fa-trash"></i></span>{{- 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') -}}
                                             </button>
-                                        {% endif %}
-                                    {% endfor %}
+                                        {%- endif -%}
+                                    {%- endfor -%}
                                 </div>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {%- endfor -%}
                 </table>
                 <div class="padding-top-7">
                     <div class="pull-left">
-                        <a href = "#" class="btn btn-primary add-new">{{ 'action.add' | trans({}, 'IhsanSimpleAdminBundle') }}</a>
+                        <a href = "#" class="btn btn-primary add-new">{{- 'action.add' | trans({}, 'IhsanSimpleAdminBundle') -}}</a>
                     </div>
                     <div class="pull-right">
-                        {{ knp_pagination_render(pagination) }}
+                        {{- knp_pagination_render(pagination) -}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+{%- endblock -%}
 
-{% block javascript %}
+{%- block javascript -%}
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery('.add-new').on('click', function () {
@@ -121,4 +121,4 @@
             });
         });
     </script>
-{% endblock %}
+{%- endblock -%}

@@ -21,9 +21,15 @@ class GenericFormType extends AbstractType
      */
     protected $controller;
 
-    public function __construct(CrudController $controller)
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    public function __construct(CrudController $controller, ContainerInterface $container)
     {
         $this->controller = $controller;
+        $this->container = $container;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
