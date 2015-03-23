@@ -46,7 +46,7 @@
                     <a href="{{- back -}}" class="btn btn-primary">{{- 'action.back' | trans({}, 'IhsanSimpleAdminBundle') -}}</a>
                     {%- for i, v in action -%}
                         {%- if v is sameas('delete') -%}
-                            <a href="#" class="btn btn-danger delete">{{- 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') -}}</a>
+                            <a href="#" class="btn btn-danger delete margin-left-7">{{- 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') -}}</a>
                         {%- endif -%}
                     {%- endfor -%}
                 </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">{{- 'action.close' | trans({}, 'IhsanSimpleAdminBundle') -}}</button>
-                    <button type="button" class="btn btn-danger delete-action pull-left margin-left-7">{{- 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') -}}</button>
+                    <button type="button" class="btn btn-danger delete-action pull-left">{{- 'action.delete' | trans({}, 'IhsanSimpleAdminBundle') -}}</button>
                 </div>
             </div>
         </div>

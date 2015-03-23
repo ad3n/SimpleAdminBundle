@@ -24,7 +24,7 @@ class UserType extends AbstractType
     public function __construct(ContainerInterface $container, array $roleHierarchy)
     {
         $this->container = $container;
-        $this->roleHierarchy = array_keys($roleHierarchy);
+        $this->roleHierarchy = array_merge(array('ROLE_USER'), array_keys($roleHierarchy));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
