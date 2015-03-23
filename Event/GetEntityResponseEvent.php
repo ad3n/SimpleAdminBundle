@@ -7,6 +7,7 @@ namespace Ihsan\SimpleAdminBundle\Event;
  */
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class GetEntityResponseEvent extends GetEntityEvent
 {

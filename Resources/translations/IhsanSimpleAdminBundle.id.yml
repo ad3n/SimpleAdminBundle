@@ -54,7 +54,7 @@ menu:
     dashboard: 'Home'
     profile: 'Profil'
     user:
-        title: 'User Management'
+        title: 'User'
         change_password: 'Ubah Password'
         add: 'Tambah User'
         list: 'Daftar User'
