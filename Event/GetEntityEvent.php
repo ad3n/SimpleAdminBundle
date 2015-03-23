@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ihsan\SimpleAdminBundle\Model\EntityInterface;
 
-class EntityEvent extends Event
+class GetEntityEvent extends Event
 {
     protected $entity;
 

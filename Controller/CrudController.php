@@ -13,13 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Ihsan\SimpleAdminBundle\Event\PreFormCreateEvent;
-use Ihsan\SimpleAdminBundle\Event\PreFormSubmitEvent;
-use Ihsan\SimpleAdminBundle\Event\PreFormValidationEvent;
-use Ihsan\SimpleAdminBundle\Event\PreSaveEvent;
-use Ihsan\SimpleAdminBundle\Event\PostSaveEvent;
-use Ihsan\SimpleAdminBundle\Event\FilterListEvent;
-use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
+use Ihsan\SimpleAdminBundle\Event\GetEntityEvent;
+use Ihsan\SimpleAdminBundle\Event\GetEntityResponseEvent;
+use Ihsan\SimpleAdminBundle\Event\GetFormResponseEvent;
+use Ihsan\SimpleAdminBundle\Event\GetQueryEvent;
+use Ihsan\SimpleAdminBundle\Event\GetResponseEvent;
 use Ihsan\SimpleAdminBundle\IhsanSimpleAdminEvents as Event;
 
 abstract class CrudController extends Controller implements OverridableTemplateInterface
@@ -46,7 +44,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
      */
     public function newAction(Request $request)
     {
-        $event = new PreFormCreateEvent();
+        $event = new GetFormResponseEvent();
         $event->setController($this);
 
         $dispatcher = $this->container->get('event_dispatcher');
@@ -76,7 +74,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
     {
         $this->isAllowedOr404Error('edit');
 
-        $event = new PreFormCreateEvent();
+        $event = new GetFormResponseEvent();
         $event->setController($this);
 
         $dispatcher = $this->container->get('event_dispatcher');
@@ -136,7 +134,8 @@ abstract class CrudController extends Controller implements OverridableTemplateI
         return $this->render($this->showActionTemplate, array(
             'data' => $data,
             'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
-            'page_title' => 'Show'.' '.$translator->trans($this->pageTitle, array(), $translationDomain),
+            'page_title' => $translator->trans($this->pageTitle, array(), $translationDomain),
+            'action_method' => $translator->trans('page.show', array(), $translationDomain),
             'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
             'back' => $request->headers->get('referer'),
             'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
@@ -153,7 +152,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
         $entity = $this->findOr404Error($id);
         $entityManager = $this->getDoctrine()->getManager();
 
-        $event = new PreDeleteEvent();
+        $event = new GetEntityResponseEvent();
         $event->setEntity($entity);
         $event->setEntityMeneger($entityManager);
 
@@ -188,7 +187,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
             $qb->setParameter('filter', strtr('%filter%', array('filter' => $filter)));
         }
 
-        $event = new FilterListEvent();
+        $event = new GetQueryEvent();
         $event->setQueryBuilder($qb);
         $event->setEntityAlias(self::ENTITY_ALIAS);
         $event->setEntityClass($this->entityClass);
@@ -234,7 +233,8 @@ abstract class CrudController extends Controller implements OverridableTemplateI
                 'start' => ($page - 1) * $this->container->getParameter('ihsan.simple_admin.per_page'),
                 'menu' => $this->container->getParameter('ihsan.simple_admin.menu'),
                 'header' => array_merge($this->gridFields(), array('action')),
-                'page_title' => 'List '.$translator->trans($this->pageTitle, array(), $translationDomain),
+                'page_title' => $translator->trans($this->pageTitle, array(), $translationDomain),
+                'action_method' => $translator->trans('page.list', array(), $translationDomain),
                 'page_description' => $translator->trans($this->pageDescription, array(), $translationDomain),
                 'identifier' => $identifier,
                 'action' => $this->container->getParameter('ihsan.simple_admin.grid_action'),
@@ -252,7 +252,7 @@ abstract class CrudController extends Controller implements OverridableTemplateI
 
         $form = $this->getForm($data);
 
-        $event = new PreFormSubmitEvent();
+        $event = new GetFormResponseEvent();
         $event->setController($this);
         $event->setFormData($data);
 
@@ -267,14 +267,15 @@ abstract class CrudController extends Controller implements OverridableTemplateI
 
         $form->handleRequest($request);
 
-        $this->outputParameter['page_title'] = ucfirst($action).' '.$translator->trans($this->pageTitle, array(), $translationDomain);
+        $this->outputParameter['page_title'] = $translator->trans($this->pageTitle, array(), $translationDomain);
+        $this->outputParameter['action_method'] = $translator->trans('page.'.$action, array(), $translationDomain);
         $this->outputParameter['page_description'] = $translator->trans($this->pageDescription, array(), $translationDomain);
         $this->outputParameter['form'] = $form->createView();
         $this->outputParameter['form_theme'] = $this->container->getParameter('ihsan.simple_admin.themes.form_theme');
         $this->outputParameter['menu'] = $this->container->getParameter('ihsan.simple_admin.menu');
 
         if ($request->isMethod('POST')) {
-            $preFormValidationEvent = new PreFormValidationEvent();
+            $preFormValidationEvent = new GetResponseEvent();
             $preFormValidationEvent->setRequest($request);
 
             $dispatcher->dispatch(Event::PRE_FORM_VALIDATION_EVENT, $preFormValidationEvent);
@@ -286,12 +287,12 @@ abstract class CrudController extends Controller implements OverridableTemplateI
                 $entity = $form->getData();
                 $entityManager = $this->getDoctrine()->getManager();
 
-                $preSaveEvent = new PreSaveEvent();
+                $preSaveEvent = new GetEntityResponseEvent();
                 $preSaveEvent->setRequest($request);
                 $preSaveEvent->setEntity($entity);
                 $preSaveEvent->setEntityMeneger($entityManager);
 
-                $postSaveEvent = new PostSaveEvent();
+                $postSaveEvent = new GetEntityEvent();
                 $postSaveEvent->setEntityMeneger($entityManager);
                 $postSaveEvent->setEntity($entity);
 

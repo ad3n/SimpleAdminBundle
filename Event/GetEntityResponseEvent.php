@@ -6,8 +6,12 @@ namespace Ihsan\SimpleAdminBundle\Event;
  * Url: http://blog.khodam.org
  */
 
-class RequestResponseWithEntityEvent extends EntityResponseEvent
+use Symfony\Component\HttpFoundation\Response;
+
+class GetEntityResponseEvent extends GetEntityEvent
 {
+    protected $response;
+
     protected $request;
 
     public function setRequest(Request $request)
@@ -21,5 +25,20 @@ class RequestResponseWithEntityEvent extends EntityResponseEvent
     public function getRequest()
     {
         return $this->request;
+    }
+
+    public function setResponse(Response $response)
+    {
+        $this->response = $response;
+
+        return $this;
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

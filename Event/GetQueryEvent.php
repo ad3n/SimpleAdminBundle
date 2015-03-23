@@ -9,7 +9,7 @@ namespace Ihsan\SimpleAdminBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 use Doctrine\ORM\QueryBuilder;
 
-class FilterListEvent extends Event
+class GetQueryEvent extends Event
 {
     protected $queryBuilder;
 

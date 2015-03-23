@@ -36,8 +36,12 @@ link:
     profile: 'Profil'
 
 page:
+    new: 'Tambah Baru'
+    edit: 'Perbaharui Informasi'
+    show: 'Tampil Data'
+    list: 'Daftar'
     user:
-        title: 'User Management'
+        title: 'User'
         description: 'Tambah, Lihat, Ubah dan Hapus User'
     profile:
         title: 'Profil Anda'

@@ -6,7 +6,7 @@ namespace Ihsan\SimpleAdminBundle\EventListener;
  * Url: http://blog.khodam.org
  */
 
-use Ihsan\SimpleAdminBundle\Event\PreDeleteEvent;
+use Ihsan\SimpleAdminBundle\Event\GetEntityResponseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -37,7 +37,7 @@ final class DeleteUserListener
         $this->container = $container;
     }
 
-    public function onDeleteUser(PreDeleteEvent $event)
+    public function onDeleteUser(GetEntityResponseEvent $event)
     {
         $entity = $event->getEntity();
 
